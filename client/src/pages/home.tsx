@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Menu, X, Check, ChevronRight, Star, 
-  MessageSquare, Brain, FileText, Calendar, 
-  Phone, Shield, Zap, ArrowRight, Bot, 
-  TrendingUp, Users, Clock, Lock
+  Menu, X, Check, Star, 
+  MessageSquare, Brain, FileText, 
+  Phone, Shield, Zap, Bot, 
+  TrendingUp, Users, Clock, Globe
 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -15,123 +15,388 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import heroCityImg from "@/assets/hero-city-ai.png";
 
-// --- Types & Data ---
+// --- Types & Translations ---
 
-const FEATURES = [
-  {
-    icon: MessageSquare,
-    title: "Instant Follow-Up",
-    description: "Engage leads within seconds of inquiry 24/7. Never miss a Zillow or Realtor.com lead again."
+type Language = 'es' | 'en';
+
+const TRANSLATIONS = {
+  es: {
+    nav: {
+      features: "Características",
+      agents: "Agentes",
+      pricing: "Precios",
+      cta: "Acceso Anticipado"
+    },
+    hero: {
+      badge: "Votada Herramienta AI #1 para Realtors 2025",
+      headline: <>El Top 1% de los Realtors <br /><span className="text-primary italic">Nunca Duerme.</span></>,
+      subheadline: "Tu nuevo equipo de ventas AI 24/7. Califica leads instantáneamente, maneja objeciones y agenda citas automáticamente mientras tú te enfocas en cerrar tratos.",
+      ctaPrimary: "Obtén Acceso Anticipado",
+      ctaSecondary: "Ver Demo",
+      trust: ["Sin tarjeta de crédito", "Configuración en 2 min", "Prueba de 14 días"]
+    },
+    problem: {
+      headline: "El Problema de la 'Velocidad de Respuesta'",
+      subheadline: "Estás perdiendo ventas todos los días. No porque no seas bueno, sino porque eres humano.",
+      cards: [
+        {
+          title: "La Regla de los 5 Minutos",
+          text: "Los leads contactados en < 5 mins tienen 21x más probabilidad de convertir. ¿Puedes lograr eso 24/7?",
+          icon: Clock
+        },
+        {
+          title: "Fatiga de Seguimiento",
+          text: "Hacer seguimiento 8-12 veces por lead es agotador. La mayoría de agentes se rinde después del 2do intento.",
+          icon: TrendingUp
+        },
+        {
+          title: "Calidad Inconsistente",
+          text: "Días malos, llamadas perdidas y falta de guiones perfectos te cuestan miles en comisiones.",
+          icon: Users
+        }
+      ]
+    },
+    features: {
+      label: "Características",
+      headline: "Todo lo que Necesitas para Escalar",
+      subheadline: "Reemplaza tus herramientas fragmentadas con un sistema inteligente unificado.",
+      list: [
+        {
+          title: "Seguimiento Instantáneo",
+          description: "Contacta leads en segundos 24/7. Nunca pierdas un lead de Zillow o Realtor.com de nuevo.",
+          icon: MessageSquare
+        },
+        {
+          title: "Manejo de Objeciones",
+          description: "Entrenado con millones de conversaciones para navegar expertamente el 'Solo estoy mirando'.",
+          icon: Shield
+        },
+        {
+          title: "Descripciones de Propiedades",
+          description: "Genera descripciones SEO optimizadas y emocionalmente persuasivas con un clic.",
+          icon: FileText
+        },
+        {
+          title: "Notas CRM Inteligentes",
+          description: "Actualiza tu CRM automáticamente con resúmenes, sentimiento del cliente y próximos pasos.",
+          icon: Brain
+        },
+        {
+          title: "Maestría en Guiones",
+          description: "Accede a guiones probados que se adaptan en vivo a las respuestas del prospecto.",
+          icon: Phone
+        },
+        {
+          title: "Asistente Siempre Activo",
+          description: "Tu miembro del equipo digital que nunca duerme, toma descansos ni pide aumento.",
+          icon: Zap
+        }
+      ]
+    },
+    agents: {
+      headline: "Conoce a tus Nuevos Top Producers",
+      subheadline: "Agentes AI especializados para cada etapa de tu embudo de ventas.",
+      list: [
+        {
+          name: "Sarah",
+          role: "Cualificadora de Leads",
+          outcome: "Convierte leads fríos en citas agendadas.",
+          demo: "¡Hola! Vi que estabas mirando la propiedad en calle 123. ¡Es una belleza! ¿Estás buscando mudarte pronto o solo mirando?"
+        },
+        {
+          name: "Marcus",
+          role: "Coach de Negociación",
+          outcome: "Te ayuda a defender tu comisión.",
+          demo: "Cuando digan 'Baja tu comisión', prueba esto: 'Entiendo que el presupuesto es clave. Si logro vender por un 10% más, ¿mis honorarios siguen siendo un problema?'"
+        },
+        {
+          name: "Elena",
+          role: "Especialista en Copy",
+          outcome: "Escribe descripciones que venden rápido.",
+          demo: "Santuario moderno bañado de sol con techos altos y cocina de chef. El sueño de un anfitrión en el corazón de la ciudad."
+        },
+        {
+          name: "David",
+          role: "Analista de Mercado",
+          outcome: "Ofrece insights de valoración basados en datos.",
+          demo: "Basado en comparables recientes, el precio por m² subió un 5%. Recomiendo posicionar en $1.2M para generar ofertas múltiples."
+        }
+      ],
+      preview: "Vista Previa"
+    },
+    pricing: {
+      headline: "Invierte en tu Crecimiento",
+      subheadline: "Precios simples y transparentes. Garantía de devolución de 30 días.",
+      plans: [
+        {
+          name: "Starter",
+          price: "199",
+          description: "Para agentes individuales listos para escalar.",
+          features: ["1 Agente AI", "500 Conversaciones/mes", "Integración CRM Básica", "Soporte por Email"],
+          cta: "Comenzar"
+        },
+        {
+          name: "Pro",
+          price: "349",
+          description: "Para top producers dominando su mercado.",
+          features: ["Los 4 Agentes AI", "Conversaciones Ilimitadas", "Sincronización CRM Prioritaria", "Soporte 24/7", "Entrenamiento de Scripts"],
+          cta: "Comenzar",
+          popular: "Más Popular"
+        },
+        {
+          name: "Team",
+          price: "Custom",
+          description: "Para inmobiliarias y equipos de alto volumen.",
+          features: ["Asientos Ilimitados", "Opción Marca Blanca", "Gerente de Éxito Dedicado", "Acceso API", "Analíticas de Equipo"],
+          cta: "Contactar Ventas"
+        }
+      ],
+      perMonth: "/mes"
+    },
+    faq: {
+      headline: "Preguntas Frecuentes",
+      list: [
+        {
+          question: "¿Es difícil de configurar?",
+          answer: "Para nada. Conectamos tus fuentes de leads (Zillow, Facebook, etc.) en unos 2 minutos. Sin código."
+        },
+        {
+          question: "¿Sonará como un robot?",
+          answer: "No. Nuestros modelos están ajustados con conversaciones de agentes humanos de alto rendimiento. La mayoría no nota la diferencia."
+        },
+        {
+          question: "¿Se integra con mi CRM?",
+          answer: "Sí, nos integramos nativamente con KVCore, Follow Up Boss, LionDesk y Salesforce. Otros disponibles vía Zapier."
+        },
+        {
+          question: "¿Qué pasa si no soy tecnológico?",
+          answer: "Construimos esto para agentes, no ingenieros. La interfaz es simple e intuitiva, y ofrecemos llamadas de onboarding gratuitas."
+        },
+        {
+          question: "¿Están seguros los datos de mis clientes?",
+          answer: "Absolutamente. Usamos encriptación de nivel bancario y nunca compartimos tus leads con otros agentes."
+        },
+        {
+          question: "¿Puedo cancelar cuando quiera?",
+          answer: "Sí, operamos mes a mes. Creemos que debemos ganarnos tu negocio cada mes."
+        }
+      ]
+    },
+    cta: {
+      headline: "¿Listo para Automatizar tu Éxito?",
+      subheadline: "Únete a más de 5,000 agentes que cierran más tratos trabajando menos.",
+      placeholder: "Ingresa tu correo electrónico",
+      button: "Obtener Acceso",
+      disclaimer: "Cupos limitados para el programa beta. Sin spam, nunca."
+    },
+    footer: {
+      description: "Empoderando profesionales inmobiliarios con herramientas AI de próxima generación.",
+      products: "Producto",
+      legal: "Legal",
+      links: {
+        features: "Características",
+        pricing: "Precios",
+        cases: "Casos de Éxito",
+        privacy: "Privacidad",
+        terms: "Términos",
+        cookies: "Cookies"
+      },
+      rights: "Todos los derechos reservados.",
+      madeIn: "Hecho con inteligencia en San Francisco."
+    }
   },
-  {
-    icon: Shield,
-    title: "Objection Handling",
-    description: "Trained on millions of real estate conversations to expertly navigate 'I'm just looking' or 'Commission is too high'."
-  },
-  {
-    icon: FileText,
-    title: "Listing Descriptions",
-    description: "Generate SEO-optimized, emotionally compelling listing copy in your unique brand voice in one click."
-  },
-  {
-    icon: Brain,
-    title: "Smart CRM Notes",
-    description: "Automatically updates your CRM with conversation summaries, client sentiment, and next steps."
-  },
-  {
-    icon: Phone,
-    title: "Script Mastery",
-    description: "Access battle-tested cold calling and door knocking scripts that adapt to the prospect's responses live."
-  },
-  {
-    icon: Zap,
-    title: "Always-On Assistant",
-    description: "Your digital team member that never sleeps, takes breaks, or asks for a raise. Pure productivity."
+  en: {
+    nav: {
+      features: "Features",
+      agents: "Agents",
+      pricing: "Pricing",
+      cta: "Get Early Access"
+    },
+    hero: {
+      badge: "Voted #1 AI Tool for Realtors 2025",
+      headline: <>The Top 1% of Realtors <br /><span className="text-primary italic">Never Sleep.</span></>,
+      subheadline: "Your new 24/7 AI sales team. Instantly qualify leads, handle objections, and book appointments automatically while you focus on closing deals.",
+      ctaPrimary: "Get Early Access",
+      ctaSecondary: "Watch Demo",
+      trust: ["No credit card required", "Setup in 2 mins", "14-day free trial"]
+    },
+    problem: {
+      headline: "The 'Speed to Lead' Problem",
+      subheadline: "You're losing deals every single day. Not because you're not good, but because you're human.",
+      cards: [
+        {
+          title: "5 Minute Rule",
+          text: "Leads contacted within 5 mins are 21x more likely to convert. Can you hit that 24/7?",
+          icon: Clock
+        },
+        {
+          title: "Lead Fatigue",
+          text: "Following up 8-12 times per lead is exhausting. Most agents stop after 2 attempts.",
+          icon: TrendingUp
+        },
+        {
+          title: "Inconsistent Quality",
+          text: "Bad days, missed calls, and lack of script mastery cost you thousands in commissions.",
+          icon: Users
+        }
+      ]
+    },
+    features: {
+      label: "Features",
+      headline: "Everything You Need to Scale",
+      subheadline: "Replace your fragmented toolset with one intelligent unified system.",
+      list: [
+        {
+          title: "Instant Follow-Up",
+          description: "Engage leads within seconds of inquiry 24/7. Never miss a Zillow or Realtor.com lead again.",
+          icon: MessageSquare
+        },
+        {
+          title: "Objection Handling",
+          description: "Trained on millions of real estate conversations to expertly navigate 'I'm just looking'.",
+          icon: Shield
+        },
+        {
+          title: "Listing Descriptions",
+          description: "Generate SEO-optimized, emotionally compelling listing copy in your unique brand voice in one click.",
+          icon: FileText
+        },
+        {
+          title: "Smart CRM Notes",
+          description: "Automatically updates your CRM with conversation summaries, client sentiment, and next steps.",
+          icon: Brain
+        },
+        {
+          title: "Script Mastery",
+          description: "Access battle-tested cold calling scripts that adapt to the prospect's responses live.",
+          icon: Phone
+        },
+        {
+          title: "Always-On Assistant",
+          description: "Your digital team member that never sleeps, takes breaks, or asks for a raise.",
+          icon: Zap
+        }
+      ]
+    },
+    agents: {
+      headline: "Meet Your New Top Producers",
+      subheadline: "Specialized AI agents for every stage of your pipeline.",
+      list: [
+        {
+          name: "Sarah",
+          role: "Lead Qualifier",
+          outcome: "Turns cold leads into booked appointments.",
+          demo: "Hi! I noticed you were looking at 123 Main St. It's a beauty! Are you looking to move soon, or just browsing?"
+        },
+        {
+          name: "Marcus",
+          role: "Negotiation Coach",
+          outcome: "Helps you defend your commission.",
+          demo: "When they say 'Cut your fee', try this: 'I understand budget is key. If I can net you 10% more, is my fee still an issue?'"
+        },
+        {
+          name: "Elena",
+          role: "Copywriting Specialist",
+          outcome: "Writes listings that sell homes faster.",
+          demo: "Sun-drenched modern sanctuary featuring soaring ceilings and chef's kitchen. An entertainer's dream in the heart of the city."
+        },
+        {
+          name: "David",
+          role: "Market Analyst",
+          outcome: "Delivers data-driven valuation insights.",
+          demo: "Based on recent comps in 90210, price per sqft is up 5%. I recommend positioning at $1.2M to trigger multiple offers."
+        }
+      ],
+      preview: "Live Preview"
+    },
+    pricing: {
+      headline: "Invest in Your Growth",
+      subheadline: "Simple, transparent pricing. 30-day money-back guarantee.",
+      plans: [
+        {
+          name: "Starter",
+          price: "199",
+          description: "For solo agents ready to scale.",
+          features: ["1 AI Agent Persona", "500 Conversations/mo", "Basic CRM Integration", "Email Support"],
+          cta: "Get Started"
+        },
+        {
+          name: "Pro",
+          price: "349",
+          description: "For top producers dominating their market.",
+          features: ["All 4 AI Personas", "Unlimited Conversations", "Priority CRM Sync", "24/7 Priority Support", "Custom Script Training"],
+          cta: "Get Started",
+          popular: "Most Popular"
+        },
+        {
+          name: "Team",
+          price: "Custom",
+          description: "For brokerages and high-volume teams.",
+          features: ["Unlimited Seats", "White-label Options", "Dedicated Success Manager", "API Access", "Team Analytics"],
+          cta: "Contact Sales"
+        }
+      ],
+      perMonth: "/mo"
+    },
+    faq: {
+      headline: "Frequently Asked Questions",
+      list: [
+        {
+          question: "Is this hard to set up?",
+          answer: "Not at all. We connect to your existing lead sources (Zillow, Facebook, etc.) in about 2 minutes. No coding required."
+        },
+        {
+          question: "Will it sound like a robot?",
+          answer: "No. Our models are fine-tuned on top-performing human realtor conversations. Most leads never know they're talking to AI."
+        },
+        {
+          question: "Does it integrate with my CRM?",
+          answer: "Yes, we integrate natively with KVCore, Follow Up Boss, LionDesk, and Salesforce. Others available via Zapier."
+        },
+        {
+          question: "What if I'm not tech-savvy?",
+          answer: "We built this for realtors, not engineers. The interface is simple, intuitive, and we offer free onboarding calls."
+        },
+        {
+          question: "Is my client data secure?",
+          answer: "Absolutely. We use bank-level encryption and never share your leads or client data with other agents or third parties."
+        },
+        {
+          question: "Can I cancel anytime?",
+          answer: "Yes, we operate on a month-to-month basis. We believe we should earn your business every single month."
+        }
+      ]
+    },
+    cta: {
+      headline: "Ready to Automate Your Success?",
+      subheadline: "Join 5,000+ realtors who are closing more deals while working less.",
+      placeholder: "Enter your email address",
+      button: "Get Access",
+      disclaimer: "Limited spots available for the beta program. No spam, ever."
+    },
+    footer: {
+      description: "Empowering real estate professionals with next-generation AI tools to close more deals in less time.",
+      products: "Product",
+      legal: "Legal",
+      links: {
+        features: "Features",
+        pricing: "Pricing",
+        cases: "Case Studies",
+        privacy: "Privacy Policy",
+        terms: "Terms of Service",
+        cookies: "Cookie Policy"
+      },
+      rights: "All rights reserved.",
+      madeIn: "Made with intelligence in San Francisco."
+    }
   }
-];
-
-const AGENTS = [
-  {
-    name: "Sarah",
-    role: "Lead Qualifier",
-    outcome: "Turns cold leads into booked appointments.",
-    demo: "Hi! I noticed you were looking at 123 Main St. It's a beauty! Are you looking to move soon, or just browsing the market?"
-  },
-  {
-    name: "Marcus",
-    role: "Negotiation Coach",
-    outcome: "Helps you defend your commission.",
-    demo: "When they say 'Cut your fee', try this: 'I understand budget is key. If I can net you 10% more, is my fee still an issue?'"
-  },
-  {
-    name: "Elena",
-    role: "Copywriting Specialist",
-    outcome: "Writes listings that sell homes faster.",
-    demo: "Sun-drenched modern sanctuary featuring soaring ceilings and chef's kitchen. An entertainer's dream in the heart of the city."
-  },
-  {
-    name: "David",
-    role: "Market Analyst",
-    outcome: "Delivers data-driven valuation insights.",
-    demo: "Based on recent comps in 90210, price per sqft is up 5%. I recommend positioning at $1.2M to trigger multiple offers."
-  }
-];
-
-const PRICING = [
-  {
-    name: "Starter",
-    price: "199",
-    description: "For solo agents ready to scale.",
-    features: ["1 AI Agent Persona", "500 Conversations/mo", "Basic CRM Integration", "Email Support"],
-    highlight: false
-  },
-  {
-    name: "Pro",
-    price: "349",
-    description: "For top producers dominating their market.",
-    features: ["All 4 AI Personas", "Unlimited Conversations", "Priority CRM Sync", "24/7 Priority Support", "Custom Script Training"],
-    highlight: true
-  },
-  {
-    name: "Team",
-    price: "Custom",
-    description: "For brokerages and high-volume teams.",
-    features: ["Unlimited Seats", "White-label Options", "Dedicated Success Manager", "API Access", "Team Analytics"],
-    highlight: false
-  }
-];
-
-const FAQS = [
-  {
-    question: "Is this hard to set up?",
-    answer: "Not at all. We connect to your existing lead sources (Zillow, Facebook, etc.) in about 2 minutes. No coding required."
-  },
-  {
-    question: "Will it sound like a robot?",
-    answer: "No. Our models are fine-tuned on top-performing human realtor conversations. Most leads never know they're talking to AI."
-  },
-  {
-    question: "Does it integrate with my CRM?",
-    answer: "Yes, we integrate natively with KVCore, Follow Up Boss, LionDesk, and Salesforce. Others available via Zapier."
-  },
-  {
-    question: "What if I'm not tech-savvy?",
-    answer: "We built this for realtors, not engineers. The interface is simple, intuitive, and we offer free onboarding calls."
-  },
-  {
-    question: "Is my client data secure?",
-    answer: "Absolutely. We use bank-level encryption and never share your leads or client data with other agents or third parties."
-  },
-  {
-    question: "Can I cancel anytime?",
-    answer: "Yes, we operate on a month-to-month basis. We believe we should earn your business every single month."
-  }
-];
+};
 
 // --- Components ---
 
-const Navbar = () => {
+const Navbar = ({ lang, setLang, t }: { lang: Language, setLang: (l: Language) => void, t: any }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -144,18 +409,50 @@ const Navbar = () => {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
-          <a href="#features" className="text-sm font-medium hover:text-primary transition-colors">Features</a>
-          <a href="#agents" className="text-sm font-medium hover:text-primary transition-colors">Agents</a>
-          <a href="#pricing" className="text-sm font-medium hover:text-primary transition-colors">Pricing</a>
+          <a href="#features" className="text-sm font-medium hover:text-primary transition-colors">{t.nav.features}</a>
+          <a href="#agents" className="text-sm font-medium hover:text-primary transition-colors">{t.nav.agents}</a>
+          <a href="#pricing" className="text-sm font-medium hover:text-primary transition-colors">{t.nav.pricing}</a>
+          
+          <div className="flex items-center gap-2 bg-secondary/10 rounded-full p-1 border border-border/20">
+            <button 
+              onClick={() => setLang('es')}
+              className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${lang === 'es' ? 'bg-primary text-primary-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
+            >
+              ES
+            </button>
+            <button 
+              onClick={() => setLang('en')}
+              className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${lang === 'en' ? 'bg-primary text-primary-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
+            >
+              EN
+            </button>
+          </div>
+
           <Button variant="default" className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6">
-            Get Early Access
+            {t.nav.cta}
           </Button>
         </div>
 
         {/* Mobile Toggle */}
-        <button className="md:hidden p-2" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X /> : <Menu />}
-        </button>
+        <div className="flex items-center gap-4 md:hidden">
+            <div className="flex items-center gap-2 bg-secondary/10 rounded-full p-1 border border-border/20">
+                <button 
+                onClick={() => setLang('es')}
+                className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${lang === 'es' ? 'bg-primary text-primary-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
+                >
+                ES
+                </button>
+                <button 
+                onClick={() => setLang('en')}
+                className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${lang === 'en' ? 'bg-primary text-primary-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
+                >
+                EN
+                </button>
+            </div>
+            <button className="p-2" onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? <X /> : <Menu />}
+            </button>
+        </div>
       </div>
 
       {/* Mobile Nav */}
@@ -168,10 +465,10 @@ const Navbar = () => {
             className="md:hidden bg-background border-b border-border/50"
           >
             <div className="flex flex-col p-6 gap-4">
-              <a href="#features" className="text-lg font-medium" onClick={() => setIsOpen(false)}>Features</a>
-              <a href="#agents" className="text-lg font-medium" onClick={() => setIsOpen(false)}>Agents</a>
-              <a href="#pricing" className="text-lg font-medium" onClick={() => setIsOpen(false)}>Pricing</a>
-              <Button className="w-full bg-primary text-primary-foreground">Get Early Access</Button>
+              <a href="#features" className="text-lg font-medium" onClick={() => setIsOpen(false)}>{t.nav.features}</a>
+              <a href="#agents" className="text-lg font-medium" onClick={() => setIsOpen(false)}>{t.nav.agents}</a>
+              <a href="#pricing" className="text-lg font-medium" onClick={() => setIsOpen(false)}>{t.nav.pricing}</a>
+              <Button className="w-full bg-primary text-primary-foreground">{t.nav.cta}</Button>
             </div>
           </motion.div>
         )}
@@ -180,7 +477,7 @@ const Navbar = () => {
   );
 };
 
-const Hero = () => {
+const Hero = ({ t }: { t: any }) => {
   return (
     <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
       {/* Abstract Background */}
@@ -192,80 +489,100 @@ const Hero = () => {
         </svg>
       </div>
 
-      <div className="container mx-auto px-6 text-center max-w-4xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary-foreground text-xs font-semibold uppercase tracking-wider mb-8">
-            <Star className="w-3 h-3 fill-primary text-primary" />
-            Voted #1 AI Tool for Realtors 2025
-          </div>
-          <h1 className="text-5xl md:text-7xl font-heading font-bold leading-[1.1] mb-6 text-foreground">
-            The Top 1% of Realtors <br />
-            <span className="text-primary italic">Never Sleep.</span>
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
-            Your new 24/7 AI sales team. Instantly qualify leads, handle objections, and book appointments while you focus on closing deals.
-          </p>
+      <div className="container mx-auto px-6">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <Button size="lg" className="h-14 px-8 rounded-full text-lg bg-primary hover:bg-primary/90 text-primary-foreground shadow-xl shadow-primary/20 w-full sm:w-auto">
-              Get Early Access
-            </Button>
-            <Button size="lg" variant="outline" className="h-14 px-8 rounded-full text-lg border-primary/30 hover:bg-primary/5 w-full sm:w-auto">
-              <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mr-3">
-                <div className="w-0 h-0 border-t-[5px] border-t-transparent border-l-[8px] border-l-primary border-b-[5px] border-b-transparent ml-1"></div>
+          {/* Text Content */}
+          <div className="flex-1 text-center lg:text-left max-w-3xl lg:max-w-none mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary-foreground text-xs font-semibold uppercase tracking-wider mb-8">
+                <Star className="w-3 h-3 fill-primary text-primary" />
+                {t.hero.badge}
               </div>
-              Watch Demo
-            </Button>
+              <h1 className="text-5xl md:text-7xl font-heading font-bold leading-[1.1] mb-6 text-foreground">
+                {t.hero.headline}
+              </h1>
+              <p className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed">
+                {t.hero.subheadline}
+              </p>
+              
+              <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-4 mb-12">
+                <Button size="lg" className="h-14 px-8 rounded-full text-lg bg-primary hover:bg-primary/90 text-primary-foreground shadow-xl shadow-primary/20 w-full sm:w-auto">
+                  {t.hero.ctaPrimary}
+                </Button>
+                <Button size="lg" variant="outline" className="h-14 px-8 rounded-full text-lg border-primary/30 hover:bg-primary/5 w-full sm:w-auto">
+                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mr-3">
+                    <div className="w-0 h-0 border-t-[5px] border-t-transparent border-l-[8px] border-l-primary border-b-[5px] border-b-transparent ml-1"></div>
+                  </div>
+                  {t.hero.ctaSecondary}
+                </Button>
+              </div>
+
+              <div className="flex flex-wrap items-center lg:justify-start justify-center gap-8 text-sm text-muted-foreground/80">
+                {t.hero.trust.map((item: string, i: number) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <Check className="w-4 h-4 text-primary" /> {item}
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-muted-foreground/80">
-            <div className="flex items-center gap-2">
-              <Check className="w-4 h-4 text-primary" /> No credit card required
-            </div>
-            <div className="flex items-center gap-2">
-              <Check className="w-4 h-4 text-primary" /> Setup in 2 minutes
-            </div>
-            <div className="flex items-center gap-2">
-              <Check className="w-4 h-4 text-primary" /> 14-day free trial
-            </div>
+          {/* Image Content */}
+          <div className="flex-1 w-full max-w-xl lg:max-w-none relative">
+            <motion.div
+               initial={{ opacity: 0, scale: 0.9 }}
+               animate={{ opacity: 1, scale: 1 }}
+               transition={{ duration: 0.8, delay: 0.2 }}
+               className="relative z-10"
+            >
+               <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-primary/20 border border-white/20">
+                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent z-10" />
+                 <img 
+                    src={heroCityImg} 
+                    alt="Futuristic Real Estate Vision" 
+                    className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700"
+                 />
+                 
+                 {/* Floating Glass Card Overlay */}
+                 <div className="absolute bottom-6 left-6 right-6 z-20 glass-card p-4 rounded-xl flex items-center gap-4 animate-in slide-in-from-bottom-4 fade-in duration-1000">
+                    <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-600">
+                        <TrendingUp className="w-6 h-6" />
+                    </div>
+                    <div>
+                        <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Monthly Growth</div>
+                        <div className="text-xl font-bold font-heading">+342% ROI</div>
+                    </div>
+                 </div>
+               </div>
+
+               {/* Decorative Elements */}
+               <div className="absolute -top-10 -right-10 w-24 h-24 bg-primary/30 rounded-full blur-2xl -z-10" />
+               <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-secondary/30 rounded-full blur-2xl -z-10" />
+            </motion.div>
           </div>
-        </motion.div>
+
+        </div>
       </div>
     </section>
   );
 };
 
-const ProblemSection = () => {
+const ProblemSection = ({ t }: { t: any }) => {
   return (
     <section className="py-20 bg-card/30">
       <div className="container mx-auto px-6">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">The "Speed to Lead" Problem</h2>
-          <p className="text-muted-foreground">You're losing deals every single day. Not because you're not good, but because you're human.</p>
+          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">{t.problem.headline}</h2>
+          <p className="text-muted-foreground">{t.problem.subheadline}</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {[
-            {
-              title: "5 Minute Rule",
-              text: "Leads contacted within 5 mins are 21x more likely to convert. Can you hit that 24/7?",
-              icon: Clock
-            },
-            {
-              title: "Lead Fatigue",
-              text: "Following up 8-12 times per lead is exhausting. Most agents stop after 2 attempts.",
-              icon: TrendingUp
-            },
-            {
-              title: "Inconsistent Quality",
-              text: "Bad days, missed calls, and lack of script mastery cost you thousands in commissions.",
-              icon: Users
-            }
-          ].map((item, i) => (
+          {t.problem.cards.map((item: any, i: number) => (
             <Card key={i} className="border-none shadow-none bg-transparent">
               <CardContent className="pt-6 text-center">
                 <div className="w-16 h-16 rounded-full bg-destructive/10 flex items-center justify-center mx-auto mb-6 text-destructive">
@@ -282,18 +599,18 @@ const ProblemSection = () => {
   );
 };
 
-const Features = () => {
+const Features = ({ t }: { t: any }) => {
   return (
     <section id="features" className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <span className="text-primary font-semibold tracking-wider uppercase text-sm">Features</span>
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mt-2 mb-4">Everything You Need to Scale</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">Replace your fragmented toolset with one intelligent system.</p>
+          <span className="text-primary font-semibold tracking-wider uppercase text-sm">{t.features.label}</span>
+          <h2 className="text-4xl md:text-5xl font-heading font-bold mt-2 mb-4">{t.features.headline}</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">{t.features.subheadline}</p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {FEATURES.map((feature, i) => (
+          {t.features.list.map((feature: any, i: number) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
@@ -318,17 +635,17 @@ const Features = () => {
   );
 };
 
-const AgentsShowcase = () => {
+const AgentsShowcase = ({ t }: { t: any }) => {
   return (
     <section id="agents" className="py-24 bg-card/50">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">Meet Your New Top Producers</h2>
-          <p className="text-muted-foreground">Specialized AI agents for every stage of your pipeline.</p>
+          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">{t.agents.headline}</h2>
+          <p className="text-muted-foreground">{t.agents.subheadline}</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {AGENTS.map((agent, i) => (
+          {t.agents.list.map((agent: any, i: number) => (
             <Card key={i} className="overflow-hidden border-border/40 hover:shadow-xl transition-shadow duration-300">
               <div className="p-6 md:p-8 flex flex-col h-full">
                 <div className="flex items-start justify-between mb-6">
@@ -345,7 +662,7 @@ const AgentsShowcase = () => {
                 
                 <div className="mt-auto bg-background/50 rounded-xl p-4 border border-border/30 relative">
                   <div className="absolute -top-3 left-4 bg-primary text-white text-[10px] uppercase font-bold px-2 py-0.5 rounded-full">
-                    Live Preview
+                    {t.agents.preview}
                   </div>
                   <div className="flex gap-3">
                     <div className="w-8 h-8 rounded-full bg-primary/20 flex-shrink-0 flex items-center justify-center">
@@ -365,27 +682,27 @@ const AgentsShowcase = () => {
   );
 };
 
-const Pricing = () => {
+const Pricing = ({ t }: { t: any }) => {
   return (
     <section id="pricing" className="py-24">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">Invest in Your Growth</h2>
-          <p className="text-muted-foreground">Simple, transparent pricing. 30-day money-back guarantee.</p>
+          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">{t.pricing.headline}</h2>
+          <p className="text-muted-foreground">{t.pricing.subheadline}</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {PRICING.map((plan, i) => (
-            <div key={i} className={`relative ${plan.highlight ? 'md:-mt-8' : ''}`}>
-              {plan.highlight && (
+          {t.pricing.plans.map((plan: any, i: number) => (
+            <div key={i} className={`relative ${plan.popular ? 'md:-mt-8' : ''}`}>
+              {plan.popular && (
                 <div className="absolute top-0 left-0 right-0 -translate-y-1/2 flex justify-center z-10">
                   <span className="bg-primary text-primary-foreground text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full shadow-lg">
-                    Most Popular
+                    {plan.popular}
                   </span>
                 </div>
               )}
               <Card className={`h-full flex flex-col ${
-                plan.highlight 
+                plan.popular 
                   ? 'border-primary shadow-2xl shadow-primary/10 bg-white/80' 
                   : 'border-border/50 bg-white/40'
               }`}>
@@ -395,14 +712,14 @@ const Pricing = () => {
                     <span className="text-4xl font-heading font-bold">
                       {plan.price === "Custom" ? "Custom" : `$${plan.price}`}
                     </span>
-                    {plan.price !== "Custom" && <span className="text-muted-foreground">/mo</span>}
+                    {plan.price !== "Custom" && <span className="text-muted-foreground">{t.pricing.perMonth}</span>}
                   </div>
                   <p className="text-sm text-muted-foreground mb-8 pb-8 border-b border-border/50">
                     {plan.description}
                   </p>
                   
                   <ul className="space-y-4 mb-8 flex-1">
-                    {plan.features.map((feature, idx) => (
+                    {plan.features.map((feature: string, idx: number) => (
                       <li key={idx} className="flex items-start gap-3 text-sm">
                         <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                         <span>{feature}</span>
@@ -412,12 +729,12 @@ const Pricing = () => {
 
                   <Button 
                     className={`w-full ${
-                      plan.highlight 
+                      plan.popular 
                         ? 'bg-primary text-primary-foreground hover:bg-primary/90' 
                         : 'bg-secondary/20 text-foreground hover:bg-secondary/30'
                     }`}
                   >
-                    {plan.price === "Custom" ? "Contact Sales" : "Get Started"}
+                    {plan.cta}
                   </Button>
                 </CardContent>
               </Card>
@@ -429,13 +746,13 @@ const Pricing = () => {
   );
 };
 
-const FAQ = () => {
+const FAQ = ({ t }: { t: any }) => {
   return (
     <section className="py-20 bg-card/30">
       <div className="container mx-auto px-6 max-w-3xl">
-        <h2 className="text-3xl md:text-4xl font-heading font-bold mb-12 text-center">Frequently Asked Questions</h2>
+        <h2 className="text-3xl md:text-4xl font-heading font-bold mb-12 text-center">{t.faq.headline}</h2>
         <Accordion type="single" collapsible className="w-full">
-          {FAQS.map((faq, i) => (
+          {t.faq.list.map((faq: any, i: number) => (
             <AccordionItem key={i} value={`item-${i}`} className="border-border/50">
               <AccordionTrigger className="text-left font-medium text-lg hover:text-primary transition-colors">
                 {faq.question}
@@ -451,37 +768,37 @@ const FAQ = () => {
   );
 };
 
-const CTA = () => {
+const CTA = ({ t }: { t: any }) => {
   return (
     <section className="py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-primary/5 -z-10" />
       <div className="container mx-auto px-6 text-center max-w-3xl">
         <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-          Ready to Automate Your Success?
+          {t.cta.headline}
         </h2>
         <p className="text-xl text-muted-foreground mb-10">
-          Join 5,000+ realtors who are closing more deals while working less.
+          {t.cta.subheadline}
         </p>
         
         <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-4 mb-6" onSubmit={(e) => e.preventDefault()}>
           <Input 
             type="email" 
-            placeholder="Enter your email address" 
+            placeholder={t.cta.placeholder}
             className="h-12 bg-background border-border/60 focus:border-primary/50"
           />
           <Button size="lg" className="h-12 bg-primary text-primary-foreground hover:bg-primary/90 px-8">
-            Get Access
+            {t.cta.button}
           </Button>
         </form>
         <p className="text-xs text-muted-foreground">
-          Limited spots available for the beta program. No spam, ever.
+          {t.cta.disclaimer}
         </p>
       </div>
     </section>
   );
 };
 
-const Footer = () => {
+const Footer = ({ t }: { t: any }) => {
   return (
     <footer className="py-12 border-t border-border/40 bg-background">
       <div className="container mx-auto px-6">
@@ -492,7 +809,7 @@ const Footer = () => {
               <span className="text-lg font-heading font-bold">REAL ESTATE SUCCESS AI</span>
             </div>
             <p className="text-muted-foreground max-w-xs mb-6">
-              Empowering real estate professionals with next-generation AI tools to close more deals in less time.
+              {t.footer.description}
             </p>
             <div className="flex gap-4 text-muted-foreground">
               {/* Social placeholders */}
@@ -508,28 +825,27 @@ const Footer = () => {
           </div>
           
           <div>
-            <h4 className="font-bold mb-4">Product</h4>
+            <h4 className="font-bold mb-4">{t.footer.products}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-primary">Features</a></li>
-              <li><a href="#" className="hover:text-primary">Pricing</a></li>
-              <li><a href="#" className="hover:text-primary">Case Studies</a></li>
-              <li><a href="#" className="hover:text-primary">API</a></li>
+              <li><a href="#" className="hover:text-primary">{t.footer.links.features}</a></li>
+              <li><a href="#" className="hover:text-primary">{t.footer.links.pricing}</a></li>
+              <li><a href="#" className="hover:text-primary">{t.footer.links.cases}</a></li>
             </ul>
           </div>
           
           <div>
-            <h4 className="font-bold mb-4">Legal</h4>
+            <h4 className="font-bold mb-4">{t.footer.legal}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-primary">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-primary">Terms of Service</a></li>
-              <li><a href="#" className="hover:text-primary">Cookie Policy</a></li>
+              <li><a href="#" className="hover:text-primary">{t.footer.links.privacy}</a></li>
+              <li><a href="#" className="hover:text-primary">{t.footer.links.terms}</a></li>
+              <li><a href="#" className="hover:text-primary">{t.footer.links.cookies}</a></li>
             </ul>
           </div>
         </div>
         
         <div className="pt-8 border-t border-border/30 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
-          <p>&copy; 2025 Real Estate Success AI. All rights reserved.</p>
-          <p>Made with intelligence in San Francisco.</p>
+          <p>&copy; 2025 Real Estate Success AI. {t.footer.rights}</p>
+          <p>{t.footer.madeIn}</p>
         </div>
       </div>
     </footer>
@@ -537,19 +853,22 @@ const Footer = () => {
 };
 
 export default function Home() {
+  const [lang, setLang] = useState<Language>('es');
+  const t = TRANSLATIONS[lang];
+
   return (
     <div className="min-h-screen bg-background font-sans text-foreground selection:bg-primary/20">
-      <Navbar />
+      <Navbar lang={lang} setLang={setLang} t={t} />
       <main>
-        <Hero />
-        <ProblemSection />
-        <Features />
-        <AgentsShowcase />
-        <Pricing />
-        <FAQ />
-        <CTA />
+        <Hero t={t} />
+        <ProblemSection t={t} />
+        <Features t={t} />
+        <AgentsShowcase t={t} />
+        <Pricing t={t} />
+        <FAQ t={t} />
+        <CTA t={t} />
       </main>
-      <Footer />
+      <Footer t={t} />
     </div>
   );
 }
