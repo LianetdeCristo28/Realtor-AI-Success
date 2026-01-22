@@ -4,7 +4,8 @@ import {
   Menu, X, Check, Star, 
   MessageSquare, Brain, FileText, 
   Phone, Shield, Zap, Bot, 
-  TrendingUp, Users, Clock, Globe
+  TrendingUp, Users, Clock, Globe,
+  ChevronLeft, ChevronRight
 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -15,7 +16,28 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
+// --- Images ---
 import heroCityImg from "@/assets/hero-city-ai.png";
+import executionImg from "@/assets/agents/execution.png";
+import salesImg from "@/assets/agents/sales.png";
+import followUpImg from "@/assets/agents/follow-up.png";
+import strategyImg from "@/assets/agents/strategy.png";
+import authorityImg from "@/assets/agents/authority.png";
+import empathyImg from "@/assets/agents/empathy.png";
+import clientCareImg from "@/assets/agents/client-care.png";
+import safePracticeImg from "@/assets/agents/safe-practice.png";
+import smartSystemsImg from "@/assets/agents/smart-systems.png";
+import ethicsImg from "@/assets/agents/ethics.png";
+import orchestraImg from "@/assets/agents/orchestra.png";
+
 
 // --- Types & Translations ---
 
@@ -97,34 +119,98 @@ const TRANSLATIONS = {
     },
     agents: {
       headline: "Conoce a tus Nuevos Top Producers",
-      subheadline: "Agentes AI especializados para cada etapa de tu embudo de ventas.",
+      subheadline: "Agentes AI especializados para cada etapa de tu embudo de ventas. Desliza para conocer a tu equipo.",
+      planIncluded: "Incluido en",
       list: [
         {
-          name: "Sarah",
-          role: "Cualificadora de Leads",
-          outcome: "Convierte leads fríos en citas agendadas.",
-          demo: "¡Hola! Vi que estabas mirando la propiedad en calle 123. ¡Es una belleza! ¿Estás buscando mudarte pronto o solo mirando?"
+          name: "Execution Core GPT",
+          role: "Gestión de Tareas",
+          outcome: "Priorización Ruthless.",
+          copy: "Elimina la parálisis por análisis. Organiza tu día para máximo ROI.",
+          plan: "Starter",
+          image: executionImg
         },
         {
-          name: "Marcus",
-          role: "Coach de Negociación",
-          outcome: "Te ayuda a defender tu comisión.",
-          demo: "Cuando digan 'Baja tu comisión', prueba esto: 'Entiendo que el presupuesto es clave. Si logro vender por un 10% más, ¿mis honorarios siguen siendo un problema?'"
+          name: "Confident Sales GPT",
+          role: "Cierre de Ventas",
+          outcome: "Conversión sin miedo.",
+          copy: "Maneja objeciones de precio y competencia con confianza absoluta.",
+          plan: "Starter",
+          image: salesImg
         },
         {
-          name: "Elena",
-          role: "Especialista en Copy",
-          outcome: "Escribe descripciones que venden rápido.",
-          demo: "Santuario moderno bañado de sol con techos altos y cocina de chef. El sueño de un anfitrión en el corazón de la ciudad."
+          name: "Follow-Up Master GPT",
+          role: "Retención de Leads",
+          outcome: "Cero leads perdidos.",
+          copy: "Nutre prospectos automáticamente hasta que estén listos para firmar.",
+          plan: "Starter",
+          image: followUpImg
         },
         {
-          name: "David",
-          role: "Analista de Mercado",
-          outcome: "Ofrece insights de valoración basados en datos.",
-          demo: "Basado en comparables recientes, el precio por m² subió un 5%. Recomiendo posicionar en $1.2M para generar ofertas múltiples."
+          name: "Market Strategist GPT",
+          role: "Análisis de Datos",
+          outcome: "Autoridad instantánea.",
+          copy: "Interpreta tendencias de mercado para posicionarte como el experto local.",
+          plan: "Pro",
+          image: strategyImg
+        },
+        {
+          name: "Visible Authority GPT",
+          role: "Marca Personal",
+          outcome: "Omnipresencia digital.",
+          copy: "Crea contenido magnético que atrae clientes ideales sin esfuerzo.",
+          plan: "Pro",
+          image: authorityImg
+        },
+        {
+          name: "Emotional Intelligence GPT",
+          role: "Conexión Humana",
+          outcome: "Confianza profunda.",
+          copy: "Detecta matices emocionales para comunicar con empatía perfecta.",
+          plan: "Pro",
+          image: empathyImg
+        },
+        {
+          name: "Client Care GPT",
+          role: "Experiencia Cliente",
+          outcome: "Referidos de por vida.",
+          copy: "Convierte clientes pasados en tu fuente #1 de nuevos negocios.",
+          plan: "Pro",
+          image: clientCareImg
+        },
+        {
+          name: "Safe Practice GPT",
+          role: "Cumplimiento Legal",
+          outcome: "Protección total.",
+          copy: "Navega contratos y normativas sin riesgo de errores costosos.",
+          plan: "Team",
+          image: safePracticeImg
+        },
+        {
+          name: "Smart Systems GPT",
+          role: "Automatización",
+          outcome: "Libertad de tiempo.",
+          copy: "Construye flujos de trabajo que operan tu negocio en piloto automático.",
+          plan: "Team",
+          image: smartSystemsImg
+        },
+        {
+          name: "Purpose & Ethics GPT",
+          role: "Alineación de Valores",
+          outcome: "Reputación intachable.",
+          copy: "Asegura que cada interacción refleje tus más altos estándares éticos.",
+          plan: "Team",
+          image: ethicsImg
+        },
+        {
+          name: "Orchestra GPT",
+          role: "Director Maestro",
+          outcome: "Sinergia total.",
+          copy: "Coordina a todos tus agentes AI para una ejecución perfecta y unificada.",
+          plan: "Team",
+          image: orchestraImg
         }
-      ],
-      preview: "Vista Previa"
+      ]
     },
     pricing: {
       headline: "Invierte en tu Crecimiento",
@@ -134,14 +220,14 @@ const TRANSLATIONS = {
           name: "Starter",
           price: "199",
           description: "Para agentes individuales listos para escalar.",
-          features: ["1 Agente AI", "500 Conversaciones/mes", "Integración CRM Básica", "Soporte por Email"],
+          features: ["3 Agentes Esenciales", "500 Conversaciones/mes", "Integración CRM Básica", "Soporte por Email"],
           cta: "Comenzar"
         },
         {
           name: "Pro",
           price: "349",
           description: "Para top producers dominando su mercado.",
-          features: ["Los 4 Agentes AI", "Conversaciones Ilimitadas", "Sincronización CRM Prioritaria", "Soporte 24/7", "Entrenamiento de Scripts"],
+          features: ["7 Agentes Avanzados (Incluye Pro)", "Conversaciones Ilimitadas", "Sincronización CRM Prioritaria", "Soporte 24/7", "Entrenamiento de Scripts"],
           cta: "Comenzar",
           popular: "Más Popular"
         },
@@ -149,7 +235,7 @@ const TRANSLATIONS = {
           name: "Team",
           price: "Custom",
           description: "Para inmobiliarias y equipos de alto volumen.",
-          features: ["Asientos Ilimitados", "Opción Marca Blanca", "Gerente de Éxito Dedicado", "Acceso API", "Analíticas de Equipo"],
+          features: ["Suite Completa (11 Agentes)", "Asientos Ilimitados", "Opción Marca Blanca", "Gerente de Éxito Dedicado", "Acceso API"],
           cta: "Contactar Ventas"
         }
       ],
@@ -282,34 +368,98 @@ const TRANSLATIONS = {
     },
     agents: {
       headline: "Meet Your New Top Producers",
-      subheadline: "Specialized AI agents for every stage of your pipeline.",
+      subheadline: "Specialized AI agents for every stage of your pipeline. Swipe to meet your team.",
+      planIncluded: "Included in",
       list: [
         {
-          name: "Sarah",
-          role: "Lead Qualifier",
-          outcome: "Turns cold leads into booked appointments.",
-          demo: "Hi! I noticed you were looking at 123 Main St. It's a beauty! Are you looking to move soon, or just browsing?"
+          name: "Execution Core GPT",
+          role: "Task Management",
+          outcome: "Ruthless prioritization.",
+          copy: "Eliminates analysis paralysis. Organizes your day for maximum ROI.",
+          plan: "Starter",
+          image: executionImg
         },
         {
-          name: "Marcus",
-          role: "Negotiation Coach",
-          outcome: "Helps you defend your commission.",
-          demo: "When they say 'Cut your fee', try this: 'I understand budget is key. If I can net you 10% more, is my fee still an issue?'"
+          name: "Confident Sales GPT",
+          role: "Sales Closing",
+          outcome: "Fearless conversion.",
+          copy: "Handles price and competition objections with absolute confidence.",
+          plan: "Starter",
+          image: salesImg
         },
         {
-          name: "Elena",
-          role: "Copywriting Specialist",
-          outcome: "Writes listings that sell homes faster.",
-          demo: "Sun-drenched modern sanctuary featuring soaring ceilings and chef's kitchen. An entertainer's dream in the heart of the city."
+          name: "Follow-Up Master GPT",
+          role: "Lead Retention",
+          outcome: "Zero lost leads.",
+          copy: "Nurtures prospects automatically until they are ready to sign.",
+          plan: "Starter",
+          image: followUpImg
         },
         {
-          name: "David",
-          role: "Market Analyst",
-          outcome: "Delivers data-driven valuation insights.",
-          demo: "Based on recent comps in 90210, price per sqft is up 5%. I recommend positioning at $1.2M to trigger multiple offers."
+          name: "Market Strategist GPT",
+          role: "Data Analysis",
+          outcome: "Instant authority.",
+          copy: "Interprets market trends to position you as the local expert.",
+          plan: "Pro",
+          image: strategyImg
+        },
+        {
+          name: "Visible Authority GPT",
+          role: "Personal Brand",
+          outcome: "Digital ubiquity.",
+          copy: "Creates magnetic content that attracts ideal clients effortlessly.",
+          plan: "Pro",
+          image: authorityImg
+        },
+        {
+          name: "Emotional Intelligence GPT",
+          role: "Human Connection",
+          outcome: "Deep trust.",
+          copy: "Detects emotional nuances to communicate with perfect empathy.",
+          plan: "Pro",
+          image: empathyImg
+        },
+        {
+          name: "Client Care GPT",
+          role: "Customer Experience",
+          outcome: "Lifetime referrals.",
+          copy: "Turns past clients into your #1 source of new business.",
+          plan: "Pro",
+          image: clientCareImg
+        },
+        {
+          name: "Safe Practice GPT",
+          role: "Compliance",
+          outcome: "Total protection.",
+          copy: "Navigates contracts and regulations without risk of costly errors.",
+          plan: "Team",
+          image: safePracticeImg
+        },
+        {
+          name: "Smart Systems GPT",
+          role: "Automation",
+          outcome: "Time freedom.",
+          copy: "Builds workflows that run your business on autopilot.",
+          plan: "Team",
+          image: smartSystemsImg
+        },
+        {
+          name: "Purpose & Ethics GPT",
+          role: "Value Alignment",
+          outcome: "Impeccable reputation.",
+          copy: "Ensures every interaction reflects your highest ethical standards.",
+          plan: "Team",
+          image: ethicsImg
+        },
+        {
+          name: "Orchestra GPT",
+          role: "Master Conductor",
+          outcome: "Total synergy.",
+          copy: "Coordinates all your AI agents for perfect, unified execution.",
+          plan: "Team",
+          image: orchestraImg
         }
-      ],
-      preview: "Live Preview"
+      ]
     },
     pricing: {
       headline: "Invest in Your Growth",
@@ -319,14 +469,14 @@ const TRANSLATIONS = {
           name: "Starter",
           price: "199",
           description: "For solo agents ready to scale.",
-          features: ["1 AI Agent Persona", "500 Conversations/mo", "Basic CRM Integration", "Email Support"],
+          features: ["3 Essential Agents", "500 Conversations/mo", "Basic CRM Integration", "Email Support"],
           cta: "Get Started"
         },
         {
           name: "Pro",
           price: "349",
           description: "For top producers dominating their market.",
-          features: ["All 4 AI Personas", "Unlimited Conversations", "Priority CRM Sync", "24/7 Priority Support", "Custom Script Training"],
+          features: ["7 Advanced Agents (Includes Pro)", "Unlimited Conversations", "Priority CRM Sync", "24/7 Priority Support", "Custom Script Training"],
           cta: "Get Started",
           popular: "Most Popular"
         },
@@ -334,7 +484,7 @@ const TRANSLATIONS = {
           name: "Team",
           price: "Custom",
           description: "For brokerages and high-volume teams.",
-          features: ["Unlimited Seats", "White-label Options", "Dedicated Success Manager", "API Access", "Team Analytics"],
+          features: ["Full Suite (11 Agents)", "Unlimited Seats", "White-label Options", "Dedicated Success Manager", "API Access"],
           cta: "Contact Sales"
         }
       ],
@@ -644,38 +794,65 @@ const AgentsShowcase = ({ t }: { t: any }) => {
           <p className="text-muted-foreground">{t.agents.subheadline}</p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {t.agents.list.map((agent: any, i: number) => (
-            <Card key={i} className="overflow-hidden border-border/40 hover:shadow-xl transition-shadow duration-300">
-              <div className="p-6 md:p-8 flex flex-col h-full">
-                <div className="flex items-start justify-between mb-6">
-                  <div>
-                    <h3 className="text-2xl font-bold font-heading">{agent.name}</h3>
-                    <p className="text-primary font-medium text-sm uppercase tracking-wide">{agent.role}</p>
+        <div className="max-w-6xl mx-auto">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4 md:-ml-8">
+              {t.agents.list.map((agent: any, i: number) => (
+                <CarouselItem key={i} className="pl-4 md:pl-8 md:basis-1/2 lg:basis-1/3">
+                  <div className="h-full">
+                    <Card className="overflow-hidden border-border/40 hover:shadow-xl transition-all duration-300 h-full group bg-white/40 hover:bg-white/60">
+                      <div className="aspect-[4/3] overflow-hidden relative">
+                         <div className="absolute top-4 right-4 z-10">
+                            <span className={`
+                              text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-sm
+                              ${agent.plan === 'Starter' ? 'bg-zinc-200 text-zinc-700' : ''}
+                              ${agent.plan === 'Pro' ? 'bg-primary/20 text-primary-foreground border border-primary/30' : ''}
+                              ${agent.plan === 'Team' ? 'bg-zinc-900 text-zinc-100' : ''}
+                            `}>
+                              {agent.plan}
+                            </span>
+                         </div>
+                         <img 
+                            src={agent.image} 
+                            alt={agent.name}
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                         />
+                         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
+                      </div>
+                      
+                      <div className="p-6 flex flex-col h-full relative">
+                        <div className="-mt-12 mb-4 relative z-10">
+                           <div className="w-16 h-16 rounded-full border-4 border-white bg-white shadow-lg overflow-hidden p-1">
+                              <img src={agent.image} alt="avatar" className="w-full h-full rounded-full object-cover" />
+                           </div>
+                        </div>
+
+                        <div className="mb-4">
+                          <h3 className="text-xl font-bold font-heading mb-1">{agent.name}</h3>
+                          <p className="text-primary font-medium text-xs uppercase tracking-wide">{agent.role}</p>
+                        </div>
+                        
+                        <p className="text-foreground font-semibold mb-2 italic">"{agent.outcome}"</p>
+                        <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                           {agent.copy}
+                        </p>
+                      </div>
+                    </Card>
                   </div>
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold text-xl">
-                    {agent.name[0]}
-                  </div>
-                </div>
-                
-                <p className="text-foreground/80 mb-6 italic">"{agent.outcome}"</p>
-                
-                <div className="mt-auto bg-background/50 rounded-xl p-4 border border-border/30 relative">
-                  <div className="absolute -top-3 left-4 bg-primary text-white text-[10px] uppercase font-bold px-2 py-0.5 rounded-full">
-                    {t.agents.preview}
-                  </div>
-                  <div className="flex gap-3">
-                    <div className="w-8 h-8 rounded-full bg-primary/20 flex-shrink-0 flex items-center justify-center">
-                      <Bot className="w-4 h-4 text-primary" />
-                    </div>
-                    <p className="text-sm leading-relaxed text-muted-foreground">
-                      {agent.demo}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </Card>
-          ))}
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex justify-center gap-2 mt-8">
+               <CarouselPrevious className="static translate-y-0 mr-2" />
+               <CarouselNext className="static translate-y-0" />
+            </div>
+          </Carousel>
         </div>
       </div>
     </section>
