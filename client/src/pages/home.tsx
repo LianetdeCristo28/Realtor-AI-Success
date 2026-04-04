@@ -949,9 +949,6 @@ const CTA = ({ t }: { t: any }) => {
         <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
           {t.cta.headline}
         </h2>
-        <p className="text-xl text-muted-foreground mb-10">
-          {t.cta.subheadline}
-        </p>
         
         <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-4 mb-6" onSubmit={(e) => e.preventDefault()}>
           <Input 
