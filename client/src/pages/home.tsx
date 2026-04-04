@@ -649,10 +649,6 @@ const Hero = ({ t }: { t: any }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary-foreground text-xs font-semibold uppercase tracking-wider mb-8">
-                <Star className="w-3 h-3 fill-primary text-primary" />
-                {t.hero.badge}
-              </div>
               <h1 className="text-5xl md:text-7xl font-heading font-bold leading-[1.1] mb-6 text-foreground">
                 {t.hero.headline}
               </h1>
