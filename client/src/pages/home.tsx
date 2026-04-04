@@ -693,17 +693,6 @@ const Hero = ({ t }: { t: any }) => {
                     alt="Futuristic Real Estate Vision" 
                     className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700"
                  />
-                 
-                 {/* Floating Glass Card Overlay */}
-                 <div className="absolute bottom-6 left-6 right-6 z-20 glass-card p-4 rounded-xl flex items-center gap-4 animate-in slide-in-from-bottom-4 fade-in duration-1000">
-                    <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-600">
-                        <TrendingUp className="w-6 h-6" />
-                    </div>
-                    <div>
-                        <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Monthly Growth</div>
-                        <div className="text-xl font-bold font-heading">+342% ROI</div>
-                    </div>
-                 </div>
                </div>
 
                {/* Decorative Elements */}
