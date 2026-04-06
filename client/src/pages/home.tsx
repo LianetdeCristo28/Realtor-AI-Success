@@ -516,10 +516,10 @@ const Navbar = ({ lang, setLang, t }: { lang: Language, setLang: (l: Language) =
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
-      <div className="container mx-auto px-6 h-20 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Brain className="w-8 h-8 text-primary" />
-          <span className="text-xl font-heading font-bold tracking-tight">REAL ESTATE SUCCESS AI</span>
+      <div className="container mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+        <div className="flex items-center gap-2 min-w-0">
+          <Brain className="w-6 h-6 sm:w-8 sm:h-8 text-primary shrink-0" />
+          <span className="text-sm sm:text-base lg:text-xl font-heading font-bold tracking-tight truncate">REAL ESTATE SUCCESS AI</span>
         </div>
 
         {/* Desktop Nav */}
@@ -594,7 +594,7 @@ const Navbar = ({ lang, setLang, t }: { lang: Language, setLang: (l: Language) =
 
 const Hero = ({ t }: { t: any }) => {
   return (
-    <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+    <section className="relative pt-24 pb-16 sm:pt-32 sm:pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
       {/* Abstract Background */}
       <div className="absolute inset-0 -z-10 opacity-30">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px]" />
@@ -614,27 +614,27 @@ const Hero = ({ t }: { t: any }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h1 className="text-5xl md:text-7xl font-heading font-bold leading-[1.1] mb-6 text-foreground">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold leading-[1.1] mb-5 sm:mb-6 text-foreground">
                 {t.hero.headline}
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-8 sm:mb-10 leading-relaxed">
                 {t.hero.subheadline}
               </p>
               
-              <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-4 mb-12">
-                <Button size="lg" className="h-14 px-8 rounded-full text-lg bg-primary hover:bg-primary/90 text-primary-foreground shadow-xl shadow-primary/20 w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-3 sm:gap-4 mb-10 sm:mb-12">
+                <Button size="lg" className="h-12 sm:h-14 px-6 sm:px-8 rounded-full text-base sm:text-lg bg-primary hover:bg-primary/90 text-primary-foreground shadow-xl shadow-primary/20 w-full sm:w-auto">
                   {t.hero.ctaPrimary}
                 </Button>
                 <a
                   href="mailto:lianet@lianet-espinosa-realty.com?subject=Quiero%20agendar%20una%20llamada"
-                  className="inline-flex items-center justify-center h-14 px-8 rounded-full text-lg border border-primary/30 hover:bg-primary/5 transition-colors w-full sm:w-auto gap-3 font-medium"
+                  className="inline-flex items-center justify-center h-12 sm:h-14 px-6 sm:px-8 rounded-full text-base sm:text-lg border border-primary/30 hover:bg-primary/5 transition-colors w-full sm:w-auto gap-3 font-medium"
                 >
-                  <Phone className="w-5 h-5 text-primary" />
+                  <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                   {t.hero.ctaSecondary}
                 </a>
               </div>
 
-              <div className="flex flex-wrap items-center lg:justify-start justify-center gap-8 text-sm text-muted-foreground/80">
+              <div className="flex flex-wrap items-center lg:justify-start justify-center gap-4 sm:gap-6 md:gap-8 text-sm text-muted-foreground/80">
                 {t.hero.trust.map((item: string, i: number) => (
                   <div key={i} className="flex items-center gap-2">
                     <Check className="w-4 h-4 text-primary" /> {item}
@@ -686,10 +686,10 @@ const Hero = ({ t }: { t: any }) => {
 
 const ProblemSection = ({ t }: { t: any }) => {
   return (
-    <section className="py-20 bg-card/30">
-      <div className="container mx-auto px-6">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">{t.problem.headline}</h2>
+    <section className="py-14 sm:py-20 bg-card/30">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold mb-4">{t.problem.headline}</h2>
           <p className="text-muted-foreground">{t.problem.subheadline}</p>
         </div>
 
@@ -713,15 +713,15 @@ const ProblemSection = ({ t }: { t: any }) => {
 
 const Features = ({ t }: { t: any }) => {
   return (
-    <section id="features" className="py-24 relative overflow-hidden">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+    <section id="features" className="py-16 sm:py-24 relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-10 sm:mb-16">
           <span className="text-primary font-semibold tracking-wider uppercase text-sm">{t.features.label}</span>
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mt-2 mb-4">{t.features.headline}</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold mt-2 mb-4">{t.features.headline}</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">{t.features.subheadline}</p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {t.features.list.map((feature: any, i: number) => (
             <motion.div
               key={i}
@@ -731,7 +731,7 @@ const Features = ({ t }: { t: any }) => {
               transition={{ delay: i * 0.1 }}
             >
               <Card className="h-full glass-card hover:bg-white/50 transition-colors border-border/40">
-                <CardContent className="p-8">
+                <CardContent className="p-6 md:p-8">
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 text-primary">
                     <feature.icon className="w-6 h-6" />
                   </div>
@@ -749,15 +749,15 @@ const Features = ({ t }: { t: any }) => {
 
 const HowItWorks = ({ t }: { t: any }) => {
   return (
-    <section className="py-24 bg-card/30">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+    <section className="py-16 sm:py-24 bg-card/30">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-10 sm:mb-16">
           <span className="text-primary font-semibold tracking-wider uppercase text-sm">{t.howItWorks.label}</span>
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mt-2 mb-4">{t.howItWorks.headline}</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold mt-2 mb-4">{t.howItWorks.headline}</h2>
           <p className="text-muted-foreground max-w-xl mx-auto">{t.howItWorks.subheadline}</p>
         </div>
 
-        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+        <div className="max-w-4xl mx-auto grid sm:grid-cols-2 gap-6 sm:gap-8">
           {t.howItWorks.steps.map((step: any, i: number) => (
             <motion.div
               key={i}
@@ -784,11 +784,11 @@ const HowItWorks = ({ t }: { t: any }) => {
 
 const AgentsShowcase = ({ t }: { t: any }) => {
   return (
-    <section id="agents" className="py-24 bg-card/50">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">{t.agents.headline}</h2>
-          <p className="text-muted-foreground">{t.agents.subheadline}</p>
+    <section id="agents" className="py-16 sm:py-24 bg-card/50">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-10 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold mb-4">{t.agents.headline}</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">{t.agents.subheadline}</p>
         </div>
 
         <div className="max-w-6xl mx-auto">
@@ -799,9 +799,9 @@ const AgentsShowcase = ({ t }: { t: any }) => {
             }}
             className="w-full"
           >
-            <CarouselContent className="-ml-4 md:-ml-8">
+            <CarouselContent className="-ml-3 sm:-ml-4 md:-ml-8">
               {t.agents.list.map((agent: any, i: number) => (
-                <CarouselItem key={i} className="pl-4 md:pl-8 md:basis-1/2 lg:basis-1/3">
+                <CarouselItem key={i} className="pl-3 sm:pl-4 md:pl-8 sm:basis-1/2 lg:basis-1/3">
                   <div className="h-full">
                     <Card className="overflow-hidden border-border/40 hover:shadow-xl transition-all duration-300 h-full group bg-white/40 hover:bg-white/60">
                       <div className="aspect-[4/3] overflow-hidden relative">
@@ -859,14 +859,14 @@ const AgentsShowcase = ({ t }: { t: any }) => {
 const LianetSection = ({ lang }: { lang: Language }) => {
   const isES = lang === 'es';
   return (
-    <section className="py-24 bg-card/30">
-      <div className="container mx-auto px-6">
+    <section className="py-16 sm:py-24 bg-card/30">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+          <div className="flex flex-col lg:flex-row items-center gap-8 sm:gap-12 lg:gap-20">
 
             {/* Photo */}
             <div className="flex-shrink-0">
-              <div className="w-64 h-64 lg:w-80 lg:h-80 rounded-2xl overflow-hidden shadow-2xl shadow-primary/10 border-4 border-white/60">
+              <div className="w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-2xl overflow-hidden shadow-2xl shadow-primary/10 border-4 border-white/60">
                 <img
                   src="/lianet-hero.jpg"
                   alt="Lianet Espinosa — Realtor en Florida"
@@ -929,18 +929,18 @@ const LianetSection = ({ lang }: { lang: Language }) => {
 
 const Pricing = ({ t }: { t: any }) => {
   return (
-    <section id="pricing" className="py-24">
-      <div className="container mx-auto px-6">
+    <section id="pricing" className="py-16 sm:py-24">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-4">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">{t.pricing.headline}</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold mb-4">{t.pricing.headline}</h2>
         </div>
-        <div className="flex justify-center mb-12">
-          <span className="inline-block bg-primary/10 text-primary border border-primary/20 text-sm font-semibold px-5 py-2 rounded-full">
+        <div className="flex justify-center mb-8 sm:mb-12 px-4">
+          <span className="inline-block bg-primary/10 text-primary border border-primary/20 text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2 rounded-full text-center">
             {t.pricing.subheadline}
           </span>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
           {t.pricing.plans.map((plan: any, i: number) => (
             <div key={i} className={`relative ${plan.popular ? 'md:-mt-8' : ''}`}>
               {plan.popular && (
@@ -955,7 +955,7 @@ const Pricing = ({ t }: { t: any }) => {
                   ? 'border-primary shadow-2xl shadow-primary/10 bg-white/80'
                   : 'border-border/50 bg-white/40'
               }`}>
-                <CardContent className="p-8 flex flex-col h-full">
+                <CardContent className="p-6 md:p-8 flex flex-col h-full">
                   <h3 className="text-xl font-bold mb-1">{plan.name}</h3>
                   <p className="text-primary text-xs font-semibold uppercase tracking-wider mb-4">{plan.tagline}</p>
 
@@ -1010,9 +1010,9 @@ const Pricing = ({ t }: { t: any }) => {
 
 const FAQ = ({ t }: { t: any }) => {
   return (
-    <section className="py-20 bg-card/30">
-      <div className="container mx-auto px-6 max-w-3xl">
-        <h2 className="text-3xl md:text-4xl font-heading font-bold mb-12 text-center">{t.faq.headline}</h2>
+    <section className="py-14 sm:py-20 bg-card/30">
+      <div className="container mx-auto px-4 sm:px-6 max-w-3xl">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold mb-8 sm:mb-12 text-center">{t.faq.headline}</h2>
         <Accordion type="single" collapsible className="w-full">
           {t.faq.list.map((faq: any, i: number) => (
             <AccordionItem key={i} value={`item-${i}`} className="border-border/50">
@@ -1032,14 +1032,14 @@ const FAQ = ({ t }: { t: any }) => {
 
 const CTA = ({ t }: { t: any }) => {
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-16 sm:py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-primary/5 -z-10" />
-      <div className="container mx-auto px-6 text-center max-w-3xl">
-        <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
+      <div className="container mx-auto px-4 sm:px-6 text-center max-w-3xl">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold mb-5 sm:mb-6">
           {t.cta.headline}
         </h2>
-        
-        <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-4 mb-6" onSubmit={(e) => e.preventDefault()}>
+
+        <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6" onSubmit={(e) => e.preventDefault()}>
           <Input 
             type="email" 
             placeholder={t.cta.placeholder}
@@ -1059,10 +1059,10 @@ const CTA = ({ t }: { t: any }) => {
 
 const Footer = ({ t }: { t: any }) => {
   return (
-    <footer className="py-12 border-t border-border/40 bg-background">
-      <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-8 mb-12">
-          <div className="col-span-1 md:col-span-2">
+    <footer className="py-10 sm:py-12 border-t border-border/40 bg-background">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10 sm:mb-12">
+          <div className="col-span-1 sm:col-span-2">
             <div className="flex items-center gap-2 mb-4">
               <Brain className="w-6 h-6 text-primary" />
               <span className="text-lg font-heading font-bold">REAL ESTATE SUCCESS AI</span>
@@ -1101,9 +1101,9 @@ const Footer = ({ t }: { t: any }) => {
           </div>
         </div>
         
-        <div className="pt-8 border-t border-border/30 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
+        <div className="pt-6 sm:pt-8 border-t border-border/30 flex flex-col md:flex-row justify-between items-center gap-2 sm:gap-4 text-xs text-muted-foreground text-center md:text-left">
           <p>&copy; 2025 Real Estate Success AI. {t.footer.rights}</p>
-          <p>{t.footer.contact}</p>
+          <p className="break-all sm:break-normal">{t.footer.contact}</p>
         </div>
       </div>
     </footer>
