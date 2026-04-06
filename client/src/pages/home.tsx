@@ -54,10 +54,10 @@ const TRANSLATIONS = {
     hero: {
       badge: "Votada Herramienta AI #1 para Realtors 2025",
       headline: <>El Top 1% de los Realtors <br /><span className="text-primary italic">Nunca Duerme.</span></>,
-      subheadline: "Tu nuevo equipo de ventas AI 24/7. Califica leads instantáneamente, maneja objeciones y agenda citas automáticamente mientras tú te enfocas en cerrar tratos.",
+      subheadline: "Tu nuevo sistema IA 24/7. Yo te lo configuro, te lo entrego listo y te acompaño. Tú no tocas código — tú solo cierras ventas.",
       ctaPrimary: "Obtén Acceso Anticipado",
       ctaSecondary: "Ver Demo",
-      trust: ["Sin tarjeta de crédito", "Configuración en 2 min", "Prueba de 14 días"]
+      trust: ["Sin código de tu parte", "Entrega en 7 días", "Soporte incluido"]
     },
     problem: {
       headline: "El Problema de la 'Velocidad de Respuesta'",
@@ -118,31 +118,31 @@ const TRANSLATIONS = {
       ]
     },
     agents: {
-      headline: "Conoce a tus Nuevos Top Producers",
-      subheadline: "Agentes AI especializados para cada etapa de tu embudo de ventas. Desliza para conocer a tu equipo.",
+      headline: "Conoce a Ana — Tu Agente IA Personal",
+      subheadline: "Ana es la pieza central del sistema. Yo la configuro personalizada para tu negocio como Realtor. No es software genérico — es tu asistente IA construida a tu medida.",
       planIncluded: "Incluido en",
       list: [
         {
-          name: "Execution Core GPT",
-          role: "Gestión de Tareas",
-          outcome: "Priorización Ruthless.",
-          copy: "Elimina la parálisis por análisis. Organiza tu día para máximo ROI.",
+          name: "Ana — Agente Principal",
+          role: "Tu Asistente IA 24/7",
+          outcome: "Siempre disponible, siempre lista.",
+          copy: "Yo construyo a Ana específicamente para tu negocio. Califica leads, maneja objeciones y agenda citas — sin que toques código.",
           plan: "Starter",
           image: executionImg
         },
         {
-          name: "Confident Sales GPT",
-          role: "Cierre de Ventas",
+          name: "Ana — Cerradora de Ventas",
+          role: "Cierre y Objeciones",
           outcome: "Conversión sin miedo.",
-          copy: "Maneja objeciones de precio y competencia con confianza absoluta.",
+          copy: "Ana está entrenada con guiones de alto rendimiento para manejar el 'Solo estoy mirando' con confianza y naturalidad.",
           plan: "Starter",
           image: salesImg
         },
         {
-          name: "Follow-Up Master GPT",
+          name: "Ana — Seguimiento Automático",
           role: "Retención de Leads",
           outcome: "Cero leads perdidos.",
-          copy: "Nutre prospectos automáticamente hasta que estén listos para firmar.",
+          copy: "Ana nutre a tus prospectos automáticamente hasta que estén listos para firmar. Tú no tienes que recordar nada.",
           plan: "Starter",
           image: followUpImg
         },
@@ -214,32 +214,56 @@ const TRANSLATIONS = {
     },
     pricing: {
       headline: "Invierte en tu Crecimiento",
-      subheadline: "Precios simples y transparentes. Garantía de devolución de 30 días.",
+      subheadline: "Precios de acceso anticipado — disponible solo para los primeros 5 clientes.",
+      setupLabel: "Setup único",
+      monthlyLabel: "/mes",
+      fullPricesNote: "Precios plenos después de los primeros 5 clientes: Starter $797 + $147/mes · Pro $1,497 + $297/mes · Scale $2,997 + $497/mes",
       plans: [
         {
           name: "Starter",
-          price: "199",
-          description: "Para agentes individuales listos para escalar.",
-          features: ["3 Agentes Esenciales", "500 Conversaciones/mes", "Integración CRM Básica", "Soporte por Email"],
+          tagline: "Activa tu Agente IA",
+          setup: "497",
+          monthly: "97",
+          description: "Para el Realtor que quiere empezar sin arriesgar mucho.",
+          features: [
+            "Ana configurada para tu negocio",
+            "1 flujo n8n (seguimiento automático)",
+            "Calificación básica de leads",
+            "30 días de soporte incluido"
+          ],
           cta: "Comenzar"
         },
         {
           name: "Pro",
-          price: "349",
-          description: "Para top producers dominando su mercado.",
-          features: ["7 Agentes Avanzados (Incluye Pro)", "Conversaciones Ilimitadas", "Sincronización CRM Prioritaria", "Soporte 24/7", "Entrenamiento de Scripts"],
+          tagline: "CRM + Automatización Completa",
+          setup: "997",
+          monthly: "197",
+          description: "Donde la mayoría de los clientes deberían aterrizar.",
+          features: [
+            "Todo Starter incluido",
+            "CRM en Supabase configurado",
+            "3–5 flujos automatizados",
+            "Dashboard de métricas",
+            "60 días de soporte"
+          ],
           cta: "Comenzar",
           popular: "Más Popular"
         },
         {
-          name: "Team",
-          price: "Custom",
-          description: "Para inmobiliarias y equipos de alto volumen.",
-          features: ["Suite Completa (11 Agentes)", "Asientos Ilimitados", "Opción Marca Blanca", "Gerente de Éxito Dedicado", "Acceso API"],
-          cta: "Contactar Ventas"
+          name: "Scale",
+          tagline: "Sistema IA Completo",
+          setup: "1,997",
+          monthly: "397",
+          description: "Para el Realtor o equipo que quiere operar como el top 1%.",
+          features: [
+            "Todo Pro incluido",
+            "Secuencias de nurturing completas",
+            "Reportes semanales automáticos",
+            "Llamada estratégica mensual con Lianet"
+          ],
+          cta: "Comenzar"
         }
-      ],
-      perMonth: "/mes"
+      ]
     },
     faq: {
       headline: "Preguntas Frecuentes",
@@ -278,19 +302,18 @@ const TRANSLATIONS = {
       disclaimer: "Cupos limitados para el programa beta. Sin spam, nunca."
     },
     footer: {
-      description: "Empoderando profesionales inmobiliarios con herramientas AI de próxima generación.",
-      products: "Producto",
+      description: "Soy Lianet Espinosa, Realtor en Florida. Yo configuro este sistema de IA para tu negocio — y me aseguro de que funcione.",
+      products: "Navegación",
       legal: "Legal",
       links: {
         features: "Características",
         pricing: "Precios",
-        cases: "Casos de Éxito",
         privacy: "Privacidad",
         terms: "Términos",
         cookies: "Cookies"
       },
       rights: "Todos los derechos reservados.",
-      madeIn: "Hecho con inteligencia en San Francisco."
+      contact: "Contacto: lianet@lianet-espinosa-realty.com"
     }
   },
   en: {
@@ -303,10 +326,10 @@ const TRANSLATIONS = {
     hero: {
       badge: "Voted #1 AI Tool for Realtors 2025",
       headline: <>The Top 1% of Realtors <br /><span className="text-primary italic">Never Sleep.</span></>,
-      subheadline: "Your new 24/7 AI sales team. Instantly qualify leads, handle objections, and book appointments automatically while you focus on closing deals.",
+      subheadline: "Your new 24/7 AI system. I configure it, deliver it ready, and stay by your side. You don't touch code — you just close deals.",
       ctaPrimary: "Get Early Access",
       ctaSecondary: "Watch Demo",
-      trust: ["No credit card required", "Setup in 2 mins", "14-day free trial"]
+      trust: ["No code on your end", "Delivered in 7 days", "Support included"]
     },
     problem: {
       headline: "The 'Speed to Lead' Problem",
@@ -367,31 +390,31 @@ const TRANSLATIONS = {
       ]
     },
     agents: {
-      headline: "Meet Your New Top Producers",
-      subheadline: "Specialized AI agents for every stage of your pipeline. Swipe to meet your team.",
+      headline: "Meet Ana — Your Personal AI Agent",
+      subheadline: "Ana is the centerpiece of the system. I configure her specifically for your real estate business. Not generic software — your AI assistant built to fit you.",
       planIncluded: "Included in",
       list: [
         {
-          name: "Execution Core GPT",
-          role: "Task Management",
-          outcome: "Ruthless prioritization.",
-          copy: "Eliminates analysis paralysis. Organizes your day for maximum ROI.",
+          name: "Ana — Main Agent",
+          role: "Your 24/7 AI Assistant",
+          outcome: "Always on, always ready.",
+          copy: "I build Ana specifically for your business. She qualifies leads, handles objections, and books appointments — without you touching code.",
           plan: "Starter",
           image: executionImg
         },
         {
-          name: "Confident Sales GPT",
-          role: "Sales Closing",
+          name: "Ana — Sales Closer",
+          role: "Closing & Objections",
           outcome: "Fearless conversion.",
-          copy: "Handles price and competition objections with absolute confidence.",
+          copy: "Ana is trained with high-performance scripts to handle 'I'm just looking' with confidence and natural flow.",
           plan: "Starter",
           image: salesImg
         },
         {
-          name: "Follow-Up Master GPT",
+          name: "Ana — Auto Follow-Up",
           role: "Lead Retention",
           outcome: "Zero lost leads.",
-          copy: "Nurtures prospects automatically until they are ready to sign.",
+          copy: "Ana automatically nurtures your prospects until they're ready to sign. You don't have to remember a thing.",
           plan: "Starter",
           image: followUpImg
         },
@@ -463,32 +486,56 @@ const TRANSLATIONS = {
     },
     pricing: {
       headline: "Invest in Your Growth",
-      subheadline: "Simple, transparent pricing. 30-day money-back guarantee.",
+      subheadline: "Early access pricing — available for the first 5 clients only.",
+      setupLabel: "One-time setup",
+      monthlyLabel: "/mo",
+      fullPricesNote: "Full prices after first 5 clients: Starter $797 + $147/mo · Pro $1,497 + $297/mo · Scale $2,997 + $497/mo",
       plans: [
         {
           name: "Starter",
-          price: "199",
-          description: "For solo agents ready to scale.",
-          features: ["3 Essential Agents", "500 Conversations/mo", "Basic CRM Integration", "Email Support"],
+          tagline: "Activate Your AI Agent",
+          setup: "497",
+          monthly: "97",
+          description: "For the Realtor who wants to start without much risk.",
+          features: [
+            "Ana configured for your business",
+            "1 n8n flow (automatic follow-up)",
+            "Basic lead qualification",
+            "30 days of support included"
+          ],
           cta: "Get Started"
         },
         {
           name: "Pro",
-          price: "349",
-          description: "For top producers dominating their market.",
-          features: ["7 Advanced Agents (Includes Pro)", "Unlimited Conversations", "Priority CRM Sync", "24/7 Priority Support", "Custom Script Training"],
+          tagline: "CRM + Full Automation",
+          setup: "997",
+          monthly: "197",
+          description: "Where most clients should land.",
+          features: [
+            "Everything in Starter",
+            "Supabase CRM configured",
+            "3–5 automated flows",
+            "Metrics dashboard",
+            "60 days of support"
+          ],
           cta: "Get Started",
           popular: "Most Popular"
         },
         {
-          name: "Team",
-          price: "Custom",
-          description: "For brokerages and high-volume teams.",
-          features: ["Full Suite (11 Agents)", "Unlimited Seats", "White-label Options", "Dedicated Success Manager", "API Access"],
-          cta: "Contact Sales"
+          name: "Scale",
+          tagline: "Complete AI System",
+          setup: "1,997",
+          monthly: "397",
+          description: "For the Realtor or team who wants to operate like the top 1%.",
+          features: [
+            "Everything in Pro",
+            "Full nurturing sequences",
+            "Automatic weekly reports",
+            "Monthly strategy call with Lianet"
+          ],
+          cta: "Get Started"
         }
-      ],
-      perMonth: "/mo"
+      ]
     },
     faq: {
       headline: "Frequently Asked Questions",
@@ -527,19 +574,18 @@ const TRANSLATIONS = {
       disclaimer: "Limited spots available for the beta program. No spam, ever."
     },
     footer: {
-      description: "Empowering real estate professionals with next-generation AI tools to close more deals in less time.",
-      products: "Product",
+      description: "I'm Lianet Espinosa, Realtor in Florida. I configure this AI system for your business — and I make sure it works.",
+      products: "Navigation",
       legal: "Legal",
       links: {
         features: "Features",
         pricing: "Pricing",
-        cases: "Case Studies",
         privacy: "Privacy Policy",
         terms: "Terms of Service",
         cookies: "Cookie Policy"
       },
       rights: "All rights reserved.",
-      madeIn: "Made with intelligence in San Francisco."
+      contact: "Contact: lianet@lianet-espinosa-realty.com"
     }
   }
 };
@@ -855,13 +901,90 @@ const AgentsShowcase = ({ t }: { t: any }) => {
   );
 };
 
+const LianetSection = ({ lang }: { lang: Language }) => {
+  const isES = lang === 'es';
+  return (
+    <section className="py-24 bg-card/30">
+      <div className="container mx-auto px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+
+            {/* Photo */}
+            <div className="flex-shrink-0">
+              <div className="w-64 h-64 lg:w-80 lg:h-80 rounded-2xl overflow-hidden shadow-2xl shadow-primary/10 border-4 border-white/60 bg-primary/10 flex items-center justify-center relative">
+                {/* Replace the div below with an <img> tag once you have your photo */}
+                <div className="text-center p-6 text-muted-foreground">
+                  <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
+                    <Bot className="w-10 h-10 text-primary" />
+                  </div>
+                  <p className="text-xs font-medium">[ Tu foto aquí ]</p>
+                </div>
+              </div>
+              {/* Realtor badge */}
+              <div className="mt-4 text-center">
+                <a
+                  href="https://www.lianet-espinosa-realty.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
+                >
+                  <Globe className="w-4 h-4" />
+                  lianet-espinosa-realty.com
+                </a>
+              </div>
+            </div>
+
+            {/* Text */}
+            <div className="flex-1 text-center lg:text-left">
+              <span className="text-primary font-semibold tracking-wider uppercase text-sm">
+                {isES ? 'La Persona Detrás del Sistema' : 'The Person Behind the System'}
+              </span>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold mt-2 mb-6">
+                {isES
+                  ? <>Soy Lianet Espinosa — <br /><span className="text-primary italic">Realtor en Florida.</span></>
+                  : <>I'm Lianet Espinosa — <br /><span className="text-primary italic">Realtor in Florida.</span></>
+                }
+              </h2>
+              <div className="space-y-4 text-muted-foreground leading-relaxed max-w-xl mx-auto lg:mx-0">
+                <p>
+                  {isES
+                    ? 'Aprendí a construir sistemas de IA con especialistas del sector y lo implementé primero en mi propio negocio como Realtor. Vi cómo Ana calificaba leads a las 2am, hacía seguimiento automático y agendaba citas mientras yo dormía.'
+                    : 'I learned to build AI systems with industry specialists and implemented it first in my own real estate business. I saw how Ana qualified leads at 2am, followed up automatically, and booked appointments while I slept.'
+                  }
+                </p>
+                <p className="font-semibold text-foreground">
+                  {isES
+                    ? 'Si funciona para mí, funciona para ti. Y yo me aseguro de que funcione.'
+                    : 'If it works for me, it works for you. And I make sure it works.'
+                  }
+                </p>
+                <p>
+                  {isES
+                    ? 'Eso es lo que ninguna empresa de tecnología puede copiar: yo sé lo que es perder un lead a las 11pm porque nadie respondió. Por eso construyo esto con la perspectiva de un Realtor, no de un ingeniero de software.'
+                    : "That's what no tech company can copy: I know what it feels like to lose a lead at 11pm because nobody responded. That's why I build this from a Realtor's perspective, not a software engineer's."
+                  }
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const Pricing = ({ t }: { t: any }) => {
   return (
     <section id="pricing" className="py-24">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-4">
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">{t.pricing.headline}</h2>
-          <p className="text-muted-foreground">{t.pricing.subheadline}</p>
+        </div>
+        <div className="flex justify-center mb-12">
+          <span className="inline-block bg-primary/10 text-primary border border-primary/20 text-sm font-semibold px-5 py-2 rounded-full">
+            {t.pricing.subheadline}
+          </span>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -875,22 +998,30 @@ const Pricing = ({ t }: { t: any }) => {
                 </div>
               )}
               <Card className={`h-full flex flex-col ${
-                plan.popular 
-                  ? 'border-primary shadow-2xl shadow-primary/10 bg-white/80' 
+                plan.popular
+                  ? 'border-primary shadow-2xl shadow-primary/10 bg-white/80'
                   : 'border-border/50 bg-white/40'
               }`}>
                 <CardContent className="p-8 flex flex-col h-full">
-                  <h3 className="text-xl font-bold mb-2">{plan.name}</h3>
-                  <div className="mb-4">
-                    <span className="text-4xl font-heading font-bold">
-                      {plan.price === "Custom" ? "Custom" : `$${plan.price}`}
-                    </span>
-                    {plan.price !== "Custom" && <span className="text-muted-foreground">{t.pricing.perMonth}</span>}
+                  <h3 className="text-xl font-bold mb-1">{plan.name}</h3>
+                  <p className="text-primary text-xs font-semibold uppercase tracking-wider mb-4">{plan.tagline}</p>
+
+                  {/* Dual pricing: setup + monthly */}
+                  <div className="mb-2">
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-4xl font-heading font-bold">${plan.setup}</span>
+                      <span className="text-sm text-muted-foreground">{t.pricing.setupLabel}</span>
+                    </div>
+                    <div className="flex items-baseline gap-1 mt-1">
+                      <span className="text-lg font-semibold text-muted-foreground">+ ${plan.monthly}</span>
+                      <span className="text-sm text-muted-foreground">{t.pricing.monthlyLabel}</span>
+                    </div>
                   </div>
+
                   <p className="text-sm text-muted-foreground mb-8 pb-8 border-b border-border/50">
                     {plan.description}
                   </p>
-                  
+
                   <ul className="space-y-4 mb-8 flex-1">
                     {plan.features.map((feature: string, idx: number) => (
                       <li key={idx} className="flex items-start gap-3 text-sm">
@@ -900,10 +1031,10 @@ const Pricing = ({ t }: { t: any }) => {
                     ))}
                   </ul>
 
-                  <Button 
+                  <Button
                     className={`w-full ${
-                      plan.popular 
-                        ? 'bg-primary text-primary-foreground hover:bg-primary/90' 
+                      plan.popular
+                        ? 'bg-primary text-primary-foreground hover:bg-primary/90'
                         : 'bg-secondary/20 text-foreground hover:bg-secondary/30'
                     }`}
                   >
@@ -914,6 +1045,11 @@ const Pricing = ({ t }: { t: any }) => {
             </div>
           ))}
         </div>
+
+        {/* Full prices note */}
+        <p className="text-center text-xs text-muted-foreground mt-10 max-w-xl mx-auto">
+          {t.pricing.fullPricesNote}
+        </p>
       </div>
     </section>
   );
@@ -997,9 +1133,8 @@ const Footer = ({ t }: { t: any }) => {
           <div>
             <h4 className="font-bold mb-4">{t.footer.products}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-primary">{t.footer.links.features}</a></li>
-              <li><a href="#" className="hover:text-primary">{t.footer.links.pricing}</a></li>
-              <li><a href="#" className="hover:text-primary">{t.footer.links.cases}</a></li>
+              <li><a href="#features" className="hover:text-primary">{t.footer.links.features}</a></li>
+              <li><a href="#pricing" className="hover:text-primary">{t.footer.links.pricing}</a></li>
             </ul>
           </div>
           
@@ -1015,7 +1150,7 @@ const Footer = ({ t }: { t: any }) => {
         
         <div className="pt-8 border-t border-border/30 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
           <p>&copy; 2025 Real Estate Success AI. {t.footer.rights}</p>
-          <p>{t.footer.madeIn}</p>
+          <p>{t.footer.contact}</p>
         </div>
       </div>
     </footer>
@@ -1034,6 +1169,7 @@ export default function Home() {
         <ProblemSection t={t} />
         <Features t={t} />
         <AgentsShowcase t={t} />
+        <LianetSection lang={lang} />
         <Pricing t={t} />
         <FAQ t={t} />
         <CTA t={t} />
