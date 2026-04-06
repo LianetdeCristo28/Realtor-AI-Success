@@ -56,8 +56,8 @@ const TRANSLATIONS = {
       headline: <>El Top 1% de los Realtors <br /><span className="text-primary italic">Nunca Duerme.</span></>,
       subheadline: "Tu nuevo sistema IA 24/7. Yo te lo configuro, te lo entrego listo y te acompaño. Tú no tocas código — tú solo cierras ventas.",
       ctaPrimary: "Obtén Acceso Anticipado",
-      ctaSecondary: "Ver Demo",
-      trust: ["Sin código de tu parte", "Entrega en 7 días", "Soporte incluido"]
+      ctaSecondary: "Agendar una Llamada",
+      trust: ["Sin código de tu parte", "Onboarding guiado", "Soporte incluido"]
     },
     problem: {
       headline: "El Problema de la 'Velocidad de Respuesta'",
@@ -114,6 +114,33 @@ const TRANSLATIONS = {
           title: "Asistente Siempre Activo",
           description: "Tu miembro del equipo digital que nunca duerme, toma descansos ni pide aumento.",
           icon: Zap
+        }
+      ]
+    },
+    howItWorks: {
+      label: "El Proceso",
+      headline: "¿Cómo Funciona?",
+      subheadline: "Del primer contacto a tu sistema activo — sin que toques código.",
+      steps: [
+        {
+          number: "01",
+          title: "Agendamos una llamada de 30 min",
+          description: "Entiendo tu negocio, tus metas y tus fuentes de leads. Sin compromiso."
+        },
+        {
+          number: "02",
+          title: "Configuro tu sistema en 5–7 días",
+          description: "Ana personalizada para ti, flujos automáticos y CRM según tu plan."
+        },
+        {
+          number: "03",
+          title: "Te entrego todo listo con capacitación",
+          description: "Una sesión contigo para que sepas exactamente cómo funciona cada parte."
+        },
+        {
+          number: "04",
+          title: "Soporte continuo de mi parte",
+          description: "No estás solo. Estoy disponible para ajustes y mejoras cada mes."
         }
       ]
     },
@@ -296,10 +323,10 @@ const TRANSLATIONS = {
     },
     cta: {
       headline: "¿Listo para Automatizar tu Éxito?",
-      subheadline: "Únete a más de 5,000 agentes que cierran más tratos trabajando menos.",
+      subheadline: "Solo quedan 5 cupos de acceso anticipado. Escríbeme tu correo y hablamos.",
       placeholder: "Ingresa tu correo electrónico",
       button: "Obtener Acceso",
-      disclaimer: "Cupos limitados para el programa beta. Sin spam, nunca."
+      disclaimer: "Te escribo personalmente en menos de 24 horas. Sin spam, nunca."
     },
     footer: {
       description: "Soy Lianet Espinosa, Realtor en Florida. Yo configuro este sistema de IA para tu negocio — y me aseguro de que funcione.",
@@ -328,8 +355,8 @@ const TRANSLATIONS = {
       headline: <>The Top 1% of Realtors <br /><span className="text-primary italic">Never Sleep.</span></>,
       subheadline: "Your new 24/7 AI system. I configure it, deliver it ready, and stay by your side. You don't touch code — you just close deals.",
       ctaPrimary: "Get Early Access",
-      ctaSecondary: "Watch Demo",
-      trust: ["No code on your end", "Delivered in 7 days", "Support included"]
+      ctaSecondary: "Schedule a Call",
+      trust: ["No code on your end", "Guided onboarding", "Support included"]
     },
     problem: {
       headline: "The 'Speed to Lead' Problem",
@@ -386,6 +413,33 @@ const TRANSLATIONS = {
           title: "Always-On Assistant",
           description: "Your digital team member that never sleeps, takes breaks, or asks for a raise.",
           icon: Zap
+        }
+      ]
+    },
+    howItWorks: {
+      label: "The Process",
+      headline: "How Does It Work?",
+      subheadline: "From first contact to an active system — without you touching code.",
+      steps: [
+        {
+          number: "01",
+          title: "We schedule a 30-min call",
+          description: "I learn about your business, your goals, and your lead sources. No commitment."
+        },
+        {
+          number: "02",
+          title: "I configure your system in 5–7 days",
+          description: "Ana personalized for you, automated flows, and CRM according to your plan."
+        },
+        {
+          number: "03",
+          title: "I deliver everything ready with training",
+          description: "A session with you so you know exactly how every part works."
+        },
+        {
+          number: "04",
+          title: "Ongoing support from me",
+          description: "You're not alone. I'm available for adjustments and improvements every month."
         }
       ]
     },
@@ -568,10 +622,10 @@ const TRANSLATIONS = {
     },
     cta: {
       headline: "Ready to Automate Your Success?",
-      subheadline: "Join 5,000+ realtors who are closing more deals while working less.",
+      subheadline: "Only 5 early access spots left. Send me your email and let's talk.",
       placeholder: "Enter your email address",
       button: "Get Access",
-      disclaimer: "Limited spots available for the beta program. No spam, ever."
+      disclaimer: "I'll personally reach out in less than 24 hours. No spam, ever."
     },
     footer: {
       description: "I'm Lianet Espinosa, Realtor in Florida. I configure this AI system for your business — and I make sure it works.",
@@ -706,12 +760,13 @@ const Hero = ({ t }: { t: any }) => {
                 <Button size="lg" className="h-14 px-8 rounded-full text-lg bg-primary hover:bg-primary/90 text-primary-foreground shadow-xl shadow-primary/20 w-full sm:w-auto">
                   {t.hero.ctaPrimary}
                 </Button>
-                <Button size="lg" variant="outline" className="h-14 px-8 rounded-full text-lg border-primary/30 hover:bg-primary/5 w-full sm:w-auto">
-                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mr-3">
-                    <div className="w-0 h-0 border-t-[5px] border-t-transparent border-l-[8px] border-l-primary border-b-[5px] border-b-transparent ml-1"></div>
-                  </div>
+                <a
+                  href="mailto:lianet@lianet-espinosa-realty.com?subject=Quiero%20agendar%20una%20llamada"
+                  className="inline-flex items-center justify-center h-14 px-8 rounded-full text-lg border border-primary/30 hover:bg-primary/5 transition-colors w-full sm:w-auto gap-3 font-medium"
+                >
+                  <Phone className="w-5 h-5 text-primary" />
                   {t.hero.ctaSecondary}
-                </Button>
+                </a>
               </div>
 
               <div className="flex flex-wrap items-center lg:justify-start justify-center gap-8 text-sm text-muted-foreground/80">
@@ -742,12 +797,12 @@ const Hero = ({ t }: { t: any }) => {
                  
                  {/* Floating Glass Card Overlay */}
                  <div className="absolute bottom-6 left-6 right-6 z-20 glass-card p-4 rounded-xl flex items-center gap-4 animate-in slide-in-from-bottom-4 fade-in duration-1000">
-                    <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-600">
-                        <TrendingUp className="w-6 h-6" />
+                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                        <Zap className="w-6 h-6" />
                     </div>
                     <div>
-                        <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Monthly Growth</div>
-                        <div className="text-xl font-bold font-heading">+342%</div>
+                        <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Beta disponible</div>
+                        <div className="text-xl font-bold font-heading">5 cupos</div>
                     </div>
                  </div>
                </div>
@@ -819,6 +874,41 @@ const Features = ({ t }: { t: any }) => {
                   <p className="text-muted-foreground">{feature.description}</p>
                 </CardContent>
               </Card>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const HowItWorks = ({ t }: { t: any }) => {
+  return (
+    <section className="py-24 bg-card/30">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-16">
+          <span className="text-primary font-semibold tracking-wider uppercase text-sm">{t.howItWorks.label}</span>
+          <h2 className="text-4xl md:text-5xl font-heading font-bold mt-2 mb-4">{t.howItWorks.headline}</h2>
+          <p className="text-muted-foreground max-w-xl mx-auto">{t.howItWorks.subheadline}</p>
+        </div>
+
+        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+          {t.howItWorks.steps.map((step: any, i: number) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="flex gap-6"
+            >
+              <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center">
+                <span className="text-primary font-heading font-bold text-lg">{step.number}</span>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold mb-2">{step.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">{step.description}</p>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -1166,6 +1256,7 @@ export default function Home() {
         <Hero t={t} />
         <ProblemSection t={t} />
         <Features t={t} />
+        <HowItWorks t={t} />
         <AgentsShowcase t={t} />
         <LianetSection lang={lang} />
         <Pricing t={t} />
