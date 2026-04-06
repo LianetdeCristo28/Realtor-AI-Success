@@ -26,17 +26,10 @@ import {
 
 // --- Images ---
 import heroCityImg from "@/assets/hero-city-ai.png";
-import executionImg from "@/assets/agents/execution.png";
-import salesImg from "@/assets/agents/sales.png";
-import followUpImg from "@/assets/agents/follow-up.png";
-import strategyImg from "@/assets/agents/strategy.png";
-import authorityImg from "@/assets/agents/authority.png";
-import empathyImg from "@/assets/agents/empathy.png";
-import clientCareImg from "@/assets/agents/client-care.png";
-import safePracticeImg from "@/assets/agents/safe-practice.png";
-import smartSystemsImg from "@/assets/agents/smart-systems.png";
-import ethicsImg from "@/assets/agents/ethics.png";
-import orchestraImg from "@/assets/agents/orchestra.png";
+
+const IMG_ANA    = "/ana%20agente%20principal.png";
+const IMG_SOFIA  = "/agente%20sofia.png";
+const IMG_MARCOS = "/agente%20marcos.png";
 
 
 // --- Types & Translations ---
@@ -150,92 +143,28 @@ const TRANSLATIONS = {
       planIncluded: "Incluido en",
       list: [
         {
-          name: "Ana — Agente Principal",
-          role: "Tu Asistente IA 24/7",
+          name: "Ana",
+          role: "Agente IA Principal",
           outcome: "Siempre disponible, siempre lista.",
           copy: "Yo construyo a Ana específicamente para tu negocio. Califica leads, maneja objeciones y agenda citas — sin que toques código.",
           plan: "Starter",
-          image: executionImg
+          image: IMG_ANA
         },
         {
-          name: "Ana — Cerradora de Ventas",
-          role: "Cierre y Objeciones",
+          name: "Sofia",
+          role: "Cerradora de Ventas",
           outcome: "Conversión sin miedo.",
-          copy: "Ana está entrenada con guiones de alto rendimiento para manejar el 'Solo estoy mirando' con confianza y naturalidad.",
-          plan: "Starter",
-          image: salesImg
+          copy: "Sofia maneja objeciones de precio y competencia con guiones de alto rendimiento. Transforma el 'Solo estoy mirando' en una cita agendada.",
+          plan: "Pro",
+          image: IMG_SOFIA
         },
         {
-          name: "Ana — Seguimiento Automático",
-          role: "Retención de Leads",
+          name: "Marcos",
+          role: "Seguimiento Automático",
           outcome: "Cero leads perdidos.",
-          copy: "Ana nutre a tus prospectos automáticamente hasta que estén listos para firmar. Tú no tienes que recordar nada.",
-          plan: "Starter",
-          image: followUpImg
-        },
-        {
-          name: "Market Strategist GPT",
-          role: "Análisis de Datos",
-          outcome: "Autoridad instantánea.",
-          copy: "Interpreta tendencias de mercado para posicionarte como el experto local.",
+          copy: "Marcos nutre a tus prospectos automáticamente hasta que estén listos para firmar. Tú no tienes que recordar nada.",
           plan: "Pro",
-          image: strategyImg
-        },
-        {
-          name: "Visible Authority GPT",
-          role: "Marca Personal",
-          outcome: "Omnipresencia digital.",
-          copy: "Crea contenido magnético que atrae clientes ideales sin esfuerzo.",
-          plan: "Pro",
-          image: authorityImg
-        },
-        {
-          name: "Emotional Intelligence GPT",
-          role: "Conexión Humana",
-          outcome: "Confianza profunda.",
-          copy: "Detecta matices emocionales para comunicar con empatía perfecta.",
-          plan: "Pro",
-          image: empathyImg
-        },
-        {
-          name: "Client Care GPT",
-          role: "Experiencia Cliente",
-          outcome: "Referidos de por vida.",
-          copy: "Convierte clientes pasados en tu fuente #1 de nuevos negocios.",
-          plan: "Pro",
-          image: clientCareImg
-        },
-        {
-          name: "Safe Practice GPT",
-          role: "Cumplimiento Legal",
-          outcome: "Protección total.",
-          copy: "Navega contratos y normativas sin riesgo de errores costosos.",
-          plan: "Team",
-          image: safePracticeImg
-        },
-        {
-          name: "Smart Systems GPT",
-          role: "Automatización",
-          outcome: "Libertad de tiempo.",
-          copy: "Construye flujos de trabajo que operan tu negocio en piloto automático.",
-          plan: "Team",
-          image: smartSystemsImg
-        },
-        {
-          name: "Purpose & Ethics GPT",
-          role: "Alineación de Valores",
-          outcome: "Reputación intachable.",
-          copy: "Asegura que cada interacción refleje tus más altos estándares éticos.",
-          plan: "Team",
-          image: ethicsImg
-        },
-        {
-          name: "Orchestra GPT",
-          role: "Director Maestro",
-          outcome: "Sinergia total.",
-          copy: "Coordina a todos tus agentes AI para una ejecución perfecta y unificada.",
-          plan: "Team",
-          image: orchestraImg
+          image: IMG_MARCOS
         }
       ]
     },
@@ -449,92 +378,28 @@ const TRANSLATIONS = {
       planIncluded: "Included in",
       list: [
         {
-          name: "Ana — Main Agent",
-          role: "Your 24/7 AI Assistant",
+          name: "Ana",
+          role: "Main AI Agent",
           outcome: "Always on, always ready.",
           copy: "I build Ana specifically for your business. She qualifies leads, handles objections, and books appointments — without you touching code.",
           plan: "Starter",
-          image: executionImg
+          image: IMG_ANA
         },
         {
-          name: "Ana — Sales Closer",
-          role: "Closing & Objections",
+          name: "Sofia",
+          role: "Sales Closer",
           outcome: "Fearless conversion.",
-          copy: "Ana is trained with high-performance scripts to handle 'I'm just looking' with confidence and natural flow.",
-          plan: "Starter",
-          image: salesImg
+          copy: "Sofia handles price and competition objections with high-performance scripts. Turns 'I'm just looking' into a booked appointment.",
+          plan: "Pro",
+          image: IMG_SOFIA
         },
         {
-          name: "Ana — Auto Follow-Up",
-          role: "Lead Retention",
+          name: "Marcos",
+          role: "Auto Follow-Up",
           outcome: "Zero lost leads.",
-          copy: "Ana automatically nurtures your prospects until they're ready to sign. You don't have to remember a thing.",
-          plan: "Starter",
-          image: followUpImg
-        },
-        {
-          name: "Market Strategist GPT",
-          role: "Data Analysis",
-          outcome: "Instant authority.",
-          copy: "Interprets market trends to position you as the local expert.",
+          copy: "Marcos automatically nurtures your prospects until they're ready to sign. You don't have to remember a thing.",
           plan: "Pro",
-          image: strategyImg
-        },
-        {
-          name: "Visible Authority GPT",
-          role: "Personal Brand",
-          outcome: "Digital ubiquity.",
-          copy: "Creates magnetic content that attracts ideal clients effortlessly.",
-          plan: "Pro",
-          image: authorityImg
-        },
-        {
-          name: "Emotional Intelligence GPT",
-          role: "Human Connection",
-          outcome: "Deep trust.",
-          copy: "Detects emotional nuances to communicate with perfect empathy.",
-          plan: "Pro",
-          image: empathyImg
-        },
-        {
-          name: "Client Care GPT",
-          role: "Customer Experience",
-          outcome: "Lifetime referrals.",
-          copy: "Turns past clients into your #1 source of new business.",
-          plan: "Pro",
-          image: clientCareImg
-        },
-        {
-          name: "Safe Practice GPT",
-          role: "Compliance",
-          outcome: "Total protection.",
-          copy: "Navigates contracts and regulations without risk of costly errors.",
-          plan: "Team",
-          image: safePracticeImg
-        },
-        {
-          name: "Smart Systems GPT",
-          role: "Automation",
-          outcome: "Time freedom.",
-          copy: "Builds workflows that run your business on autopilot.",
-          plan: "Team",
-          image: smartSystemsImg
-        },
-        {
-          name: "Purpose & Ethics GPT",
-          role: "Value Alignment",
-          outcome: "Impeccable reputation.",
-          copy: "Ensures every interaction reflects your highest ethical standards.",
-          plan: "Team",
-          image: ethicsImg
-        },
-        {
-          name: "Orchestra GPT",
-          role: "Master Conductor",
-          outcome: "Total synergy.",
-          copy: "Coordinates all your AI agents for perfect, unified execution.",
-          plan: "Team",
-          image: orchestraImg
+          image: IMG_MARCOS
         }
       ]
     },
