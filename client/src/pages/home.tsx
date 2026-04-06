@@ -911,14 +911,12 @@ const LianetSection = ({ lang }: { lang: Language }) => {
 
             {/* Photo */}
             <div className="flex-shrink-0">
-              <div className="w-64 h-64 lg:w-80 lg:h-80 rounded-2xl overflow-hidden shadow-2xl shadow-primary/10 border-4 border-white/60 bg-primary/10 flex items-center justify-center relative">
-                {/* Replace the div below with an <img> tag once you have your photo */}
-                <div className="text-center p-6 text-muted-foreground">
-                  <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
-                    <Bot className="w-10 h-10 text-primary" />
-                  </div>
-                  <p className="text-xs font-medium">[ Tu foto aquí ]</p>
-                </div>
+              <div className="w-64 h-64 lg:w-80 lg:h-80 rounded-2xl overflow-hidden shadow-2xl shadow-primary/10 border-4 border-white/60">
+                <img
+                  src="/lianet-hero.jpg"
+                  alt="Lianet Espinosa — Realtor en Florida"
+                  className="w-full h-full object-cover object-top"
+                />
               </div>
               {/* Realtor badge */}
               <div className="mt-4 text-center">
